@@ -1,0 +1,3 @@
+# Solution by David Eccles
+# Same as loca, but uses perl to parse output
+csplit --digits=1 --quiet --prefix=seq $1 "/>.*/" "{*}"; for j in 1 2; do sed '1d' seq$j > tmp && mv tmp seq$j; done; rm seq0 ; matcher -datafile=EPAM250 -gapopen 5 -gapextend 5 -aformat3 markx10 seq1 seq2 /dev/fd/1 2>/dev/null | grep -e "^# Score" -e "^[A-Z\-]\+$" -e "^> " | perl -pe 's/\n//;s/> \.\./\n/'| perl -pe 's/\-//g;s/# Score: //'; echo; rm seq1 seq2

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for chrom in `seq 1 22`; do
+	echo "Processing chromosome $chrom"
+	cat chr${chrom}LD*.txt | tr '\r' '\n' | cut -f 1,2 | grep -v Proxy | python `to-unix-path ${OBER_CODE}/misc/examples/ld_block.py` > ld-blocks-chr${chrom}.txt
+done
+
+zip ld-blocks.zip ld-blocks-chr*

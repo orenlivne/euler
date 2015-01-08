@@ -1,0 +1,48 @@
+#!/bin/bash
+#-----------------------------------------------------
+# Prune a list of rs SNPs so that each of them is not
+# in LD with a list of Illumina chip variants.
+# For Kyong.
+#
+# Ran on actual data set on CRI with the command:
+# ${OBER_CODE}/misc/kyong/xld /group/ober-resources/users/kk1/humancore/QTL /group/ober-resources/users/kk1/humancore/humancore-12v1-0_a.csv /group/ober-resources/users/kk1/humancore/ld_all_r.txt QTL.pruned.txt
+#
+# Oren Livne
+# 10-MAR-2014
+#-----------------------------------------------------
+
+input_file="$1"      # Input file name of variants (eQTLs) to add to the Illumina chip
+humancore_file="$2"  # File with annotated Illumina chip SNPs
+ld_file="$3"         # LD info file (pairs of SNPs and their r^2)
+output_file="$4"     # Output file with list of pruned variants
+#threshold="0.9"      # Minimum LD r^2 to consider as "in-LD"
+
+rm -f ${output_file}
+temp=`mktemp -d`
+
+# Change input format to be more convenient
+ld_file_temp="${temp}/ld.txt"
+sed 's/chr//g' ${ld_file} > ${ld_file_temp}
+
+for chrom in `seq 1 22`; do
+    # Prune each chromosome separately; then merge all the pieces
+    echo "Pruning chromosome ${chrom} ..."
+    humancore_chr_file="${temp}/humancore.chr${chrom}.txt"
+    ld_chr_file="${temp}/ld.chr${chrom}.txt"
+
+    # Extract SNP list from input file
+
+    # Extract rs Illumina chip variants on our chromosome
+    awk -F, -v chrom=${chrom} '{ if ((NR >= 8) && ($10 == chrom) && match($2,/.*rs.*/)) { rs=$2; if (substr(rs, 1, 5) == "newrs") rs=substr(rs, 4, length(rs)); print rs; } }' ${humancore_file} > ${humancore_chr_file}
+    
+    # Extract snp1,snp2,r^2 cols from ld file.
+    awk -v chrom=${chrom} '{ if ($1 == chrom) { print $2, $3; } }' ${ld_file_temp} > ${ld_chr_file}
+    
+    # Prune SNPs in input list
+    python ${OBER_CODE}/misc/kyong/xld.py ${input_file} ${humancore_chr_file} ${ld_chr_file} >> ${output_file}
+done
+
+sort ${output_file} | uniq | wc -l > tmp && mv tmp ${output_file}
+
+# Clean up
+rm -rf ${temp}

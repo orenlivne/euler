@@ -1,0 +1,6 @@
+#!/bin/bash
+s=`awk '{print $1}' $1.dat`
+~/ros-app/libstree-0.4.2/test/buildtest `awk '{print $1}' $1.dat` >& $1.libtree.out
+cat $1.libtree.out | grep "'" | grep -v "<eos>" | awk '{print $1}' | sed "s/'//g" | sort > $1.out
+#grep "'" $1.libtree.out |  sed 's/<eos>//g' | awk '{printf "%s$\n", $1}' | sed "s/'//g" | sort > $1.out
+#cat $1.out

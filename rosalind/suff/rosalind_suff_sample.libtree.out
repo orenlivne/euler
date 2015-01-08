@@ -1,0 +1,19 @@
+Tree after all insertions:
+[0 (0)]
+	'<eos>' [8] 13tc (ATAAATG$)
+	'$' [7] 12tc (ATAAATG$)
+	'G$' [6] 11tc (ATAAATG$)
+	'T' 9 (ATAAATG$)
+	'A' 3 (ATAAATG$)
+[9 (0) -> 0]
+	'G$' [5] 10tc (ATAAATG$)
+	'AAATG$' [1] 2tc (ATAAATG$)
+[3 (0) -> 0]
+	'A' 5 (ATAAATG$)
+	'T' 7 (ATAAATG$)
+[5 (0) -> 3]
+	'TG$' [3] 6tc (ATAAATG$)
+	'ATG$' [2] 4tc (ATAAATG$)
+[7 (0) -> 9]
+	'G$' [4] 8tc (ATAAATG$)
+	'AAATG$' [0] 1tc (ATAAATG$)

@@ -1,0 +1,192 @@
+Question 1: 
+
+Let's say we're developing a vector graphics application. It will allow the user to create lines, rectangles, circles, text, etc. and manipulate them independently - move them, re-size them, etc. Design an object model for this application. 
+
+•                  How would you model the representation of the document in an object oriented language? 
+•                  What classes would you define? 
+•                  What methods would you have? What would your API look like?
+
+Once you're finished - select "Submit Solution" to solve question 2.
+
+Solution:
+'''
+Vector graphics application
+
+Error Handling
+==============
+* Don't allow moving a shape outside the document's size; need to determine which class
+is responsible for this - Document or Shape? (same for resizing)
+A. If it's document, we'd need to determine if moving the shape is possible or not before actually moving it.
+   Breaks Shape's encapulation and possibly adds more runtime overhead.
+B. If it's in the shape, it's self-contained. Makes more sense. But the tradeoff is that the shape is to keep
+   an extra pointer to the document's margins, increasing memory consumption.
+I'm going with A. Seems to be simpler and solve many more problems than B does.
+
+Document class
+==============
+Members:
+shapes - list of shapes
+size - visible area that contains the shapes
+
+Shape super-class
+=================
+REQUIREMENT: Manipulate shapes independently - so each shape has to correspond to a separate class instance
+
+Shape members:
+* type 
+
+Shape methods:
+* Move
+* Re-size
+
+Shape Sub-classes:
+==================
+* lines
+* rectangles
+* circles
+* text
+** Factory method to instantiate sub-class by type identifier (say, string)
+
+Rectangle
+=========
+Represented by a numpy array of size 4: [x_min, x_max, y_min, y_max] to represent
+the closed rectangle [x_min, x_max] x [y_min, y_max].
+'''
+
+import numpy as np # Convenient for representing size and position arrays
+
+#-------------------------------------------------------------------------------------
+# Utilities
+#-------------------------------------------------------------------------------------
+def rect_contains(size, box):
+    '''Check whether the rectangle size contains the rectangle box.'''
+    return box[0] >= size[0] and box[1] <= size[1] and box[2] >= size[2] and box[3] <= size[3]
+
+#-------------------------------------------------------------------------------------
+class Document(object):
+    '''Represents a vector graphics document.'''
+    
+    #==============================
+    # Constructors
+    #==============================
+    def __init__(self, size):
+        '''Create an empty 2-D document of margins [margins[0],margins[1]] x [margins[2],margins[3]]. size is a numpy array.'''
+        self.shapes = []
+        self.margins = margins
+        
+    #==============================
+    # Public methods
+    #==============================
+    def create_shape(self, shape_type, position, size):
+        '''Create a new shape of type shape_type and add it to the current Document instance. Return the new shape instance.'''
+        shape = self._new_shape(shape_type, position, size)
+        self.shapes.append(shape)
+        return shape
+    
+    def find_shapes_by_type(self, shape_type):
+        '''Return all shapes in this Document of type shape_type.'''
+        return [shape for shape in self.shapes if shape.shape_type == shape_type]
+
+    def find_shapes_overlapping_rect(self, rect):
+        '''Return all shapes that overlap the rectangle [rect[0],rect[1]] x [rect[2],rect[3]].'''
+        raise NotImplementedError('To be based on a condition that uses interval arithmetic in x & interval arithmetic in y')
+
+    def move(self, shape, offset):
+        '''Move the shape shape by offset (offset[0],offset[1]). Return a success code.'''
+        old_shape = shape.copy()
+        shape.move(offset)
+        if self._in_bounds(shape):
+            return True
+        else:
+            # Need to ensure we're referring to the right shape pointer in self.shapes after the move.
+            # So keep the same pointer, just copy back the fields from the backup copy old_shape
+            shape.copy_from(old_shape)
+            return False
+
+    def resize(self, shape, factor):
+        '''Resize the shape by a factor factor. Return a success code.'''
+        old_shape = shape.copy()
+        shape.resize(factor)
+        if self._in_bounds(shape):
+            return True
+        else:
+            # Need to ensure we're referring to the right shape pointer in self.shapes after the move.
+            # So keep the same pointer, just copy back the fields from the backup copy old_shape
+            shape.copy_from(old_shape)
+            return False
+    
+    #==============================
+    # Private methods
+    #==============================
+    def _in_bounds(self, shape):
+        '''Check whether the shape shape is contained in this Document.'''
+        return rect_contains(self.size, shape.bounding_box())
+    
+    def _new_shape(self, shape_type, position, size):
+        '''Create a new shape of type shape_type.'''
+        if shape_type == 'line':
+            shape = Line(shape, position, size)
+        elif shape_type == 'rectangle':
+            shape = Rectangle(shape, position, size)
+        elif shape_type == 'circle':
+            shape = Circle(shape, position, size)
+        elif shape_type == 'text':
+            shape = Text(shape, position, size)
+    
+#-------------------------------------------------------------------------------------
+class Shape(object):
+    '''A base class representing a generic shape within a Document.'''
+    
+    #==============================
+    # Constructors
+    #==============================
+    def __init__(self, shape_type, position, size):
+        '''Create a shape of type shape_type (string identifier) at position position (numpy array of size 2)
+        of size size (positive scalar).'''
+        self.shape_type = shape_type
+        self.position = position
+        if size < 0:
+            raise ValueError('Cannot create a shape of negative size')
+        self.size = size
+
+    #==============================
+    # Public methods
+    #==============================
+    def copy(self):
+        '''Return a deep copy of this object.'''
+        return Shape(self.shape_type, self.position, self.size)
+        
+    def copy_from(self, other):
+        '''Copy the fields of the Shape other into this object. other is assumed to be of the same type as self.'''
+        self.position = self.position
+        self.size = size
+        
+    def move(self, offset):
+        '''Move the shape by offset (offset[0],offset[1]). Return a success code.'''
+        self.position += offset
+
+    def resize(self, factor):
+        '''Resize the shape by a factor factor. Return a success code.'''
+        self.size *= factor
+
+    def bounding_box(self):
+        '''Return the smallest rectangle containing this shape.'''
+        raise ValueError('Must be implemented by sub-classes')
+    
+#-------------------------------------------------------------------------------------
+class Line(Shape):
+    # Bounding box: lower-left to upper-right points of the line
+    pass
+
+class Rectangle(Shape):
+    # Bounding box is the rectangle
+    pass
+
+class Circle(Shape):
+    # Bounding box is determined by diameter
+    pass
+
+class Text(Shape):
+    # Can have different fonts
+    pass
+

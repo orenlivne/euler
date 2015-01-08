@@ -1,0 +1,8 @@
+#!/bin/bash
+f="$1"
+QHOME="/home/oren/rosapp/qdist-2.0"
+DATA="${QHOME}/testdata"
+head -2 $f | tail -1 > ${DATA}/tree1
+head -3 $f | tail -1 > ${DATA}/tree2
+${QHOME}/qdist ${DATA}/tree1 ${DATA}/tree2 | sed '1d' | awk '{print 2*($2 - $4)}'
+rm -f ${DATA}/tree1 ${DATA}/tree2

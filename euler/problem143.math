@@ -1,0 +1,24 @@
+(* Mathematica program to simplify the formulas for p,q,r as functions of a,b,c. *)
+
+f[a_,b_,c_] = a ^ 4 - 2 * (b ^ 2 - c ^ 2) ^ 2 + a ^ 2 * (b ^ 2 + c ^ 2 + Sqrt[3 * ((a ^ 2 + b ^ 2 + c ^ 2) ^ 2 - 2 * (a ^ 4 + b ^ 4 + c ^ 4))])
+a1 = f[a, b, c] 
+a2 = f[b, c, a] 
+a3 = f[c, a, b]
+
+c2 = (b ^ 2 + c ^ 2 - a ^ 2) / (2 * c)
+c1 = Sqrt[b ^ 2 - c2 ^ 2]
+
+s = Simplify[a1 + a2 + a3]
+
+t0 = a3 * c1
+t1 = a2 * c + a3 * c2
+p = Sqrt[t0 ^ 2 + t1 ^ 2] / s
+q = Sqrt[(t0 ^ 2 + (t1 - c * s) ^ 2] / s
+r = Sqrt[(t0 - c1 * s) ^ 2 + (t1 - c2 * s) ^ 2] / s
+
+b = a+d
+c = a+2d
+
+Simplify[p]
+Simplify[q]
+Simplify[r]

@@ -1,0 +1,142 @@
+Question 1:
+Given a pattern such as * * * r * t where * can be any letter, find all matches in a dictionary.
+
+Ideas:
+Sort the dictionary according to any position so that when we search for “r” we only need to look in the “bin” that contains the “r” at the 4th position
+Brute-force: search for "r" at 4th position first, if matches, search for “t”
+Complexity: O(n) where n = #words of dictionary
+Length matching ("hashing" the string): attempt to match string only if length matches
+Priority matching: match on most rare character first, etc.
+Variant: calculate frequencies of each character at each position, prioritize by combination
+
+Dictionary:
+abcde, 5
+word, 4
+...
+
+Pre-processing:
+Create a hash table (bins) where every entry contains all words of a certain length
+Index on the value of a character at every position (equivalent sorting by the first character, sort by second position)
+
+Example:
+* * * r * *
+a b c r a a
+a b c r p q
+a h c r a b
+d c w r a t
+d c w r a c
+d c p r a t
+
+We could repeat the same for another letter and intersect the patterns:
+* * * * * t
+d c w r a t
+d q w q a t
+d c p r a t
+
+... yet it is unclear we can improve the complexity.
+
+-------------------------------------------------------------------------------------------------
+Question 2: Given a string such as "r a t c e x", find all permutations of all subsets of the
+string that are words in a dictionary.
+
+In this case, it would be:
+rat
+tear
+tare
+trace
+crate
+ate
+eat
+
+Let size of the input x = m
+Let size of the dictionary = n
+
+Ideas:
+Brute-force: 
+Generate all permutations - O(2^m)
+For each permutation, check if it’s in the dictionary - O(1)
+Prune the BF search - don’t look at words that have no chance of being in the dictionary
+Dynamic programming approach? Try to solve for x[1..m-1] first, then use to extend - unclear.
+
+r a t c e x
+
+r
+a
+t
+c
+e
+x ? check if there are words of length 6 that start with x
+Suppose there are
+xa
+xc ? xca ...
+xe
+xr
+xt
+
+[GI] Now suppose we've given a class with the API:
+class Dictionary {
+  bool IsWord(string s);
+  bool IsPrefix(string s);
+}
+
+Write a code in your favorite language to do the search.
+
+def _pruned_search(d, s, prefix):
+	‘’’Yield all strings in the Dictionary d that start with string prefix and all their characters belong to the set of characters s.’’’
+for x in s:
+	new_prefix = prefix+x
+	if d.IsWord(new_prefix): yield new_prefix
+	if d.IsPrefix(new_prefix):
+		new_s = CharBag.copy(s)
+		new_s.remove(x)
+for result in _pruned_search(d, new_s, new_prefix):
+yield result  
+
+pruned_search = lambda d, s: _pruned_search(d, CharBag(s), ‘’)
+
+class CharBag(object):
+	def __init__(self, s):
+	‘’’Create a bag from a string s. s may have repeated
+characters.’’’
+	self._bag = {}
+	for x in s: self._bag[x] = self._bag.setdefault(x, 0) + 1
+
+	def copy(self):
+		‘’’Copy constructor.’’’
+		other = CharBag()
+		other._bag = self._bag.copy()
+
+	def remove(self):
+		if not self._bag.has_key(x):
+			raise ValueError(‘Key not present’)
+		count = self._bag[x]
+		if count == 1: self._bag.remove(x)
+		else: self._bag[x] = count - 1
+
+	def __iter__(self):
+		return (x for (x, _) in self._bag.iteritems()) # or self._bag.iterkeys()
+
+for x in pruned_search(d, ‘rat’):
+	print x
+
+Run-through of the code on an example:
+
+s						prefix
+-------------------------------------------
+START (DEPTH=0):
+set([‘r’, ‘a’, ‘t’])			‘’
+x = ‘r’
+new_prefix = ‘r’
+x = ‘a’
+new_prefix = ‘a’ -------> yield ‘a’
+
+DEPTH=1
+set([‘r’, ‘t’]) 				‘a’
+x = ‘ar’
+
+DEPTH=2
+set([‘t’]) 				‘ar’
+‘art’ -------> yield ‘art’
+
+* What happens if we have repeated letters? Our original set() data structure would not cut it!
+Say 'earr'. THus use CharBag.

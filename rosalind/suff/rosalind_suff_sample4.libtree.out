@@ -1,0 +1,14 @@
+Tree after all insertions:
+[0 (0)]
+	'<eos>' [7] 10tc (CTCTAT$)
+	'$' [6] 9tc (CTCTAT$)
+	'AT$' [4] 7tc (CTCTAT$)
+	'T' 5 (CTCTAT$)
+	'CT' 3 (CTCTAT$)
+[5 (0) -> 0]
+	'$' [5] 8tc (CTCTAT$)
+	'AT$' [3] 6tc (CTCTAT$)
+	'CTAT$' [1] 2tc (CTCTAT$)
+[3 (0) -> 5]
+	'AT$' [2] 4tc (CTCTAT$)
+	'CTAT$' [0] 1tc (CTCTAT$)

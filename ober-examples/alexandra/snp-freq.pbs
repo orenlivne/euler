@@ -1,0 +1,93 @@
+#!/bin/bash
+#-----------------------------------------------------------------
+# Compute imputed Hutterites allele frequencies for a list of SNPs.
+#
+# #Mandatory parameters:
+# #- snp_list: file name with list of SNP IDs
+# #- out_dir: output directory
+#
+# Output is written to the file ${out_dir}/snp-freq.csv.
+#
+# Cluster submission example command:
+# qsub -v snp_list=/home/olivne/alexandra/snps.csv,out_dir=/home/olivne/alexandra ~/ober/code/misc/examples/alexandra/snp-freq.pbs
+#-----------------------------------------------------------------
+#PBS -l walltime=01:00:00
+#PBS -l nodes=1:ppn=22
+#PBS -N snp-freq
+#PBS -q batch
+#PBS -j oe
+
+# Compute allele frequencies for a single chromosome.
+function process_chrom
+{
+  snp_ssv="$1"
+  out_dir="$2"
+  chrom="$3"
+  range_file="${out_dir}/imputed.chr${chrom}.snps"
+  PLINK="plink --noweb --nonfounders"
+
+  #echo "Processing chrom ${chrom}"
+  awk -v chrom=${chrom} '{ if ($1 == chrom) { printf "%s %s %s SNP%s\n", $1, $2, $2, $2;} }' ${snp_ssv} > ${range_file}
+  imputed_dir="/group/ober-resources/users/olivne/imputed-override"
+  imputed_file="${imputed_dir}/imputed_cgi"
+  fam_file="${imputed_dir}/hutterites.genotyped.tfam"
+  plink_cmd="${PLINK} --bed ${imputed_file}.chr${chrom}.bed --bim ${imputed_file}.chr${chrom}.bim --fam ${fam_file} --out ${out_dir}/imputed.chr${chrom} --extract ${range_file} --range --freq"
+#  echo ${plink_cmd}
+  ${plink_cmd} >& /dev/null
+
+  plink_cmd="${PLINK} --bed ${imputed_file}.chr${chrom}.bed --bim ${imputed_file}.chr${chrom}.bim --fam ${fam_file} --out ${out_dir}/imputed.chr${chrom} --extract ${range_file} --range --recode --transpose"
+#  echo ${plink_cmd}
+  ${plink_cmd} >& /dev/null
+  printf "%-7d %-10d %-10d\n" ${chrom} `wc -l ${range_file} | awk '{print $1}'` `sed '1d' ${out_dir}/imputed.chr${chrom}.frq | wc -l | awk '{print $1}'` > ${out_dir}/snp-freq.chr${chrom}.log
+}
+
+#--------------------
+# Main program
+#--------------------
+#snp_list="${HOME}/alexandra/snps.csv"
+#out_dir="${HOME}/alexandra"
+if [[ $# -eq 2 ]]; then
+    snp_list="$1"
+    out_dir="$2"
+fi
+#echo "snp_list ${snp_list}"
+#echo "out_dir ${out_dir}"
+
+# Pre-processing
+cat ${snp_list} | grep -o '[0-9]\+,.*' | tr ',' ' ' |  tr -d '\r' | sed -e "s/(.*)//g;s/^ *//;s/ *$//;s/'s//g;s/_//g" | sort | uniq > ${snp_list}.ssv
+
+#export -f process_chrom
+chroms=`seq 1 22`
+echo ${chroms} | parallel -j 4 process_chrom ${snp_list} ${out_dir}
+
+# Join all chromosomal results, convert to original coordinates
+# Prepare summary report
+cd ${out_dir}
+rm -rf imputed.frq imputed.tped
+report_file="${out_dir}/snp-freq.log"
+printf "%-7s %-10s %-10s\n" "Chrom" "Requested" "Found" > ${report_file}
+sr=0
+sf=0
+sc=0
+for chrom in ${chroms}; do
+    sed '1d' imputed.chr${chrom}.frq >> imputed.frq
+    cat imputed.chr${chrom}.tped >> imputed.tped
+
+    n=( `cat snp-freq.chr${chrom}.log` )
+    c="${n[0]}"
+    r="${n[1]}"
+    f="${n[2]}"
+    (( sc = sc + 1 ))
+    (( sr = sr + r ))
+    (( sf = sf + f ))
+    printf "%-7d %-10d %-10d\n" ${c} ${r} ${f} >> ${report_file}
+done
+echo "--------------------------" >> ${report_file}
+printf "%-7d %-10d %-10d\n" ${sc} ${sr} ${sf} >> ${report_file}
+
+# Join data with original data file, adding new column data whenever we found it in CGI
+awk '{printf "%02d%d %s\n", $1, $2, $0}' ${snp_list}.ssv | sort -k 1,1 > hash
+join --check-order -1 1 -2 2 hash <(join --check-order -j 2 <(awk '{printf "%02d%d %s\n", $1, $4, $2}' imputed.tped | sort -k 2,2) <(sort -k 2,2 imputed.frq) | sort -k 2,2) > result
+( join --check-order -j 1 <(comm -23 <(awk '{print $1}' hash) <(awk '{print $1}' result)) hash | awk '{printf "%s,%s,%s,%s,%s,%s,%s,%s\n", $2, $3, $4, "", "", "", "", ""}' ; awk '{printf "%d,%d,%s,%s,%s,%s,%s,%s\n", $2, $3, $4, $5, $7, $8, $9, $10}' result ) | sort -k 1,1n -k 2,2n > snp-freq.csv
+
+rm -f hash result ${snp_list}.ssv imputed.* snp-freq.chr*.log

@@ -1,0 +1,12 @@
+$
+A
+A
+AAATG$
+AAATG$
+ATG$
+G$
+G$
+G$
+T
+T
+TG$

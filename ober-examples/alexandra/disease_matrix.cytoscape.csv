@@ -1,0 +1,547 @@
+Sex hormone-binding globulin levels,Urate levels,pp,TRUE,edge00000,2
+Sex hormone-binding globulin levels,Metabolic syndrome,pp,TRUE,edge00001,2
+Sex hormone-binding globulin levels,Chronic kidney disease,pp,TRUE,edge00002,2
+Sex hormone-binding globulin levels,Breast size,pp,TRUE,edge00003,2
+Sex hormone-binding globulin levels,Sex hormone-binding globulin levels,pp,TRUE,edge00004,24
+Sex hormone-binding globulin levels,Uric acid levels,pp,TRUE,edge00005,2
+Sex hormone-binding globulin levels,Cholesterol total,pp,TRUE,edge00006,2
+Sex hormone-binding globulin levels,Response to statin therapy,pp,TRUE,edge00007,2
+Sex hormone-binding globulin levels,Cardiovascular disease risk factors,pp,TRUE,edge00008,2
+Sex hormone-binding globulin levels,Metabolic traits,pp,TRUE,edge00009,4
+Sex hormone-binding globulin levels,Bilirubin levels,pp,TRUE,edge00010,2
+Sex hormone-binding globulin levels,Liver enzyme levels,pp,TRUE,edge00011,4
+Sex hormone-binding globulin levels,Crohn disease,pp,TRUE,edge00012,2
+Sex hormone-binding globulin levels,Triglycerides,pp,TRUE,edge00013,4
+Sex hormone-binding globulin levels,Metabolite levels,pp,TRUE,edge00014,2
+Sex hormone-binding globulin levels,LDL cholesterol,pp,TRUE,edge00015,2
+Atopic dermatitis,Psoriasis,pp,TRUE,edge00016,2
+Atopic dermatitis,Asthma,pp,TRUE,edge00017,4
+Atopic dermatitis,Atopic dermatitis,pp,TRUE,edge00018,25
+Atopic dermatitis,Celiac disease,pp,TRUE,edge00019,2
+Atopic dermatitis,Inflammatory bowel disease,pp,TRUE,edge00020,2
+Atopic dermatitis,Crohn disease,pp,TRUE,edge00021,6
+IgG glycosylation,Weight,pp,TRUE,edge00022,2
+IgG glycosylation,Ankylosing spondylitis,pp,TRUE,edge00023,2
+IgG glycosylation,IgG glycosylation,pp,TRUE,edge00024,375
+IgG glycosylation,Bone mineral density,pp,TRUE,edge00025,4
+IgG glycosylation,Celiac disease,pp,TRUE,edge00026,2
+IgG glycosylation,Height,pp,TRUE,edge00027,6
+IgG glycosylation,Menarche,pp,TRUE,edge00028,2
+IgG glycosylation,Coronary heart disease,pp,TRUE,edge00029,2
+HDL cholesterol,Systemic lupus erythematosus,pp,TRUE,edge00030,2
+HDL cholesterol,Red blood cell traits,pp,TRUE,edge00031,6
+HDL cholesterol,Blood pressure,pp,TRUE,edge00032,2
+HDL cholesterol,HDL cholesterol,pp,TRUE,edge00033,75
+HDL cholesterol,Response to statin therapy,pp,TRUE,edge00034,2
+HDL cholesterol,Age-related macular degeneration,pp,TRUE,edge00035,4
+HDL cholesterol,Esophageal cancer,pp,TRUE,edge00036,2
+HDL cholesterol,Adiponectin levels,pp,TRUE,edge00037,8
+HDL cholesterol,Metabolite levels,pp,TRUE,edge00038,18
+HDL cholesterol,Coronary heart disease,pp,TRUE,edge00039,6
+HDL cholesterol,Pubertal anthropometrics,pp,TRUE,edge00040,2
+HDL cholesterol,Renal function-related traits,pp,TRUE,edge00041,2
+HDL cholesterol,Body mass,pp,TRUE,edge00042,4
+HDL cholesterol,Liver enzyme levels,pp,TRUE,edge00043,4
+HDL cholesterol,LDL cholesterol,pp,TRUE,edge00044,16
+HDL cholesterol,Metabolic traits,pp,TRUE,edge00045,6
+HDL cholesterol,Inflammatory bowel disease,pp,TRUE,edge00046,2
+HDL cholesterol,Biomedical quantitative traits,pp,TRUE,edge00047,4
+HDL cholesterol,Obesity,pp,TRUE,edge00048,2
+HDL cholesterol,Metabolic syndrome,pp,TRUE,edge00049,24
+HDL cholesterol,Urate levels,pp,TRUE,edge00050,6
+HDL cholesterol,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00051,2
+HDL cholesterol,Prostate cancer,pp,TRUE,edge00052,2
+HDL cholesterol,Weight,pp,TRUE,edge00053,2
+HDL cholesterol,Cholesterol total,pp,TRUE,edge00054,26
+HDL cholesterol,Height,pp,TRUE,edge00055,4
+HDL cholesterol,Celiac disease,pp,TRUE,edge00056,2
+HDL cholesterol,Cardiovascular disease risk factors,pp,TRUE,edge00057,6
+HDL cholesterol,Hypertension,pp,TRUE,edge00058,2
+HDL cholesterol,Triglycerides,pp,TRUE,edge00059,34
+HDL cholesterol,Crohn disease,pp,TRUE,edge00060,4
+Esophageal cancer,Blood pressure,pp,TRUE,edge00061,2
+Esophageal cancer,Renal function-related traits,pp,TRUE,edge00062,2
+Esophageal cancer,Esophageal cancer,pp,TRUE,edge00063,22
+Esophageal cancer,Biomedical quantitative traits,pp,TRUE,edge00064,2
+Esophageal cancer,Metabolite levels,pp,TRUE,edge00065,2
+Esophageal cancer,Coronary heart disease,pp,TRUE,edge00066,2
+Type 1 diabetes,Ulcerative colitis,pp,TRUE,edge00067,6
+Type 1 diabetes,Type 1 diabetes,pp,TRUE,edge00068,66
+Type 1 diabetes,Asthma,pp,TRUE,edge00069,4
+Type 1 diabetes,Weight,pp,TRUE,edge00070,2
+Type 1 diabetes,Systemic lupus erythematosus,pp,TRUE,edge00071,2
+Type 1 diabetes,Rheumatoid arthritis,pp,TRUE,edge00072,10
+Type 1 diabetes,Multiple sclerosis,pp,TRUE,edge00073,4
+Type 1 diabetes,Body mass,pp,TRUE,edge00074,2
+Type 1 diabetes,Vitiligo,pp,TRUE,edge00075,10
+Type 1 diabetes,Celiac disease,pp,TRUE,edge00076,2
+Type 1 diabetes,Menarche,pp,TRUE,edge00077,2
+Type 1 diabetes,Hypothyroidism,pp,TRUE,edge00078,2
+Type 1 diabetes,Inflammatory bowel disease,pp,TRUE,edge00079,10
+Type 1 diabetes,Height,pp,TRUE,edge00080,2
+Type 1 diabetes,Primary biliary cirrhosis,pp,TRUE,edge00081,4
+Type 1 diabetes,Crohn disease,pp,TRUE,edge00082,14
+Metabolite levels,Chronic kidney disease,pp,TRUE,edge00083,4
+Metabolite levels,Red blood cell traits,pp,TRUE,edge00084,2
+Metabolite levels,Blood pressure,pp,TRUE,edge00085,2
+Metabolite levels,Response to statin therapy,pp,TRUE,edge00086,4
+Metabolite levels,Age-related macular degeneration,pp,TRUE,edge00087,4
+Metabolite levels,Metabolite levels,pp,TRUE,edge00088,74
+Metabolite levels,Coronary heart disease,pp,TRUE,edge00089,8
+Metabolite levels,Renal function-related traits,pp,TRUE,edge00090,6
+Metabolite levels,Obesity-related traits,pp,TRUE,edge00091,2
+Metabolite levels,Liver enzyme levels,pp,TRUE,edge00092,6
+Metabolite levels,LDL cholesterol,pp,TRUE,edge00093,18
+Metabolite levels,Metabolic traits,pp,TRUE,edge00094,24
+Metabolite levels,Biomedical quantitative traits,pp,TRUE,edge00095,2
+Metabolite levels,Metabolic syndrome,pp,TRUE,edge00096,20
+Metabolite levels,Urate levels,pp,TRUE,edge00097,2
+Metabolite levels,Breast size,pp,TRUE,edge00098,2
+Metabolite levels,Uric acid levels,pp,TRUE,edge00099,2
+Metabolite levels,Cholesterol total,pp,TRUE,edge00100,20
+Metabolite levels,Cardiovascular disease risk factors,pp,TRUE,edge00101,12
+Metabolite levels,End-stage coagulation,pp,TRUE,edge00102,2
+Metabolite levels,Triglycerides,pp,TRUE,edge00103,22
+Metabolite levels,Crohn disease,pp,TRUE,edge00104,6
+Coronary heart disease,Chronic kidney disease,pp,TRUE,edge00105,2
+Coronary heart disease,Red blood cell traits,pp,TRUE,edge00106,4
+Coronary heart disease,Blood pressure,pp,TRUE,edge00107,6
+Coronary heart disease,Response to statin therapy,pp,TRUE,edge00108,2
+Coronary heart disease,Coronary heart disease,pp,TRUE,edge00109,109
+Coronary heart disease,Rheumatoid arthritis,pp,TRUE,edge00110,2
+Coronary heart disease,Renal function-related traits,pp,TRUE,edge00111,2
+Coronary heart disease,Vitiligo,pp,TRUE,edge00112,2
+Coronary heart disease,Metabolic syndrome,pp,TRUE,edge00113,6
+Coronary heart disease,Parkinson disease,pp,TRUE,edge00114,2
+Coronary heart disease,Liver enzyme levels,pp,TRUE,edge00115,4
+Coronary heart disease,LDL cholesterol,pp,TRUE,edge00116,8
+Coronary heart disease,Type 2 diabetes,pp,TRUE,edge00117,2
+Coronary heart disease,Urate levels,pp,TRUE,edge00118,2
+Coronary heart disease,Cholesterol total,pp,TRUE,edge00119,6
+Coronary heart disease,Cardiovascular disease risk factors,pp,TRUE,edge00120,2
+Coronary heart disease,Celiac disease,pp,TRUE,edge00121,2
+Coronary heart disease,Schizophrenia,pp,TRUE,edge00122,2
+Coronary heart disease,Hypothyroidism,pp,TRUE,edge00123,2
+Coronary heart disease,Triglycerides,pp,TRUE,edge00124,2
+Psoriasis,Psoriasis,pp,TRUE,edge00125,31
+Psoriasis,Ulcerative colitis,pp,TRUE,edge00126,2
+Psoriasis,Asthma,pp,TRUE,edge00127,2
+Psoriasis,Height,pp,TRUE,edge00128,2
+Psoriasis,Multiple sclerosis,pp,TRUE,edge00129,2
+Psoriasis,Crohn disease,pp,TRUE,edge00130,2
+Colorectal cancer,Prostate cancer,pp,TRUE,edge00131,2
+Colorectal cancer,Colorectal cancer,pp,TRUE,edge00132,34
+Response to tocilizumab in rheumatoid arthritis,Response to tocilizumab in rheumatoid arthritis,pp,TRUE,edge00133,28
+Orofacial clefts,Orofacial clefts,pp,TRUE,edge00134,22
+Vitiligo,Urate levels,pp,TRUE,edge00135,2
+Vitiligo,Chronic kidney disease,pp,TRUE,edge00136,2
+Vitiligo,Red blood cell traits,pp,TRUE,edge00137,2
+Vitiligo,Asthma,pp,TRUE,edge00138,2
+Vitiligo,Blood pressure,pp,TRUE,edge00139,2
+Vitiligo,Rheumatoid arthritis,pp,TRUE,edge00140,6
+Vitiligo,Myopia,pp,TRUE,edge00141,2
+Vitiligo,Vitiligo,pp,TRUE,edge00142,37
+Vitiligo,Celiac disease,pp,TRUE,edge00143,4
+Vitiligo,Inflammatory bowel disease,pp,TRUE,edge00144,2
+Vitiligo,Hypothyroidism,pp,TRUE,edge00145,2
+Vitiligo,Crohn disease,pp,TRUE,edge00146,2
+Corneal structure,Corneal structure,pp,TRUE,edge00147,26
+QT interval,QT interval,pp,TRUE,edge00148,76
+QT interval,Thiazide-induced adverse metabolic effects in hype,pp,TRUE,edge00149,2
+QT interval,Ventricular conduction,pp,TRUE,edge00150,2
+Information processing speed,Information processing speed,pp,TRUE,edge00151,25
+Parkinson disease,Parkinson disease,pp,TRUE,edge00152,37
+Parkinson disease,Schizophrenia,pp,TRUE,edge00153,2
+Parkinson disease,Blood pressure,pp,TRUE,edge00154,2
+Inflammatory bowel disease,Systemic lupus erythematosus,pp,TRUE,edge00155,4
+Inflammatory bowel disease,Red blood cell traits,pp,TRUE,edge00156,2
+Inflammatory bowel disease,Asthma,pp,TRUE,edge00157,2
+Inflammatory bowel disease,Multiple sclerosis,pp,TRUE,edge00158,12
+Inflammatory bowel disease,Rheumatoid arthritis,pp,TRUE,edge00159,6
+Inflammatory bowel disease,Ankylosing spondylitis,pp,TRUE,edge00160,4
+Inflammatory bowel disease,Renal function-related traits,pp,TRUE,edge00161,2
+Inflammatory bowel disease,Body mass,pp,TRUE,edge00162,4
+Inflammatory bowel disease,Obesity-related traits,pp,TRUE,edge00163,2
+Inflammatory bowel disease,Kawasaki disease,pp,TRUE,edge00164,4
+Inflammatory bowel disease,Ulcerative colitis,pp,TRUE,edge00165,48
+Inflammatory bowel disease,Type 2 diabetes,pp,TRUE,edge00166,2
+Inflammatory bowel disease,Inflammatory bowel disease,pp,TRUE,edge00167,118
+Inflammatory bowel disease,Primary biliary cirrhosis,pp,TRUE,edge00168,4
+Inflammatory bowel disease,Weight,pp,TRUE,edge00169,2
+Inflammatory bowel disease,Bone mineral density,pp,TRUE,edge00170,2
+Inflammatory bowel disease,Celiac disease,pp,TRUE,edge00171,16
+Inflammatory bowel disease,Crohn disease,pp,TRUE,edge00172,74
+Obesity,Urate levels,pp,TRUE,edge00173,2
+Obesity,Type 2 diabetes,pp,TRUE,edge00174,2
+Obesity,Weight,pp,TRUE,edge00175,4
+Obesity,Body mass,pp,TRUE,edge00176,4
+Obesity,Metabolic syndrome,pp,TRUE,edge00177,2
+Obesity,Height,pp,TRUE,edge00178,2
+Obesity,Subcutaneous adipose tissue,pp,TRUE,edge00179,2
+Obesity,Obesity-related traits,pp,TRUE,edge00180,2
+Obesity,Biomedical quantitative traits,pp,TRUE,edge00181,2
+Obesity,Obesity,pp,TRUE,edge00182,19
+Obesity,Menarche,pp,TRUE,edge00183,2
+Cognitive performance,Smoking behavior,pp,TRUE,edge00184,2
+Cognitive performance,Cognitive performance,pp,TRUE,edge00185,58
+Metabolic syndrome,Chronic kidney disease,pp,TRUE,edge00186,2
+Metabolic syndrome,Red blood cell traits,pp,TRUE,edge00187,2
+Metabolic syndrome,Response to statin therapy,pp,TRUE,edge00188,2
+Metabolic syndrome,Age-related macular degeneration,pp,TRUE,edge00189,2
+Metabolic syndrome,Cardiovascular disease risk factors,pp,TRUE,edge00190,6
+Metabolic syndrome,LDL cholesterol,pp,TRUE,edge00191,8
+Metabolic syndrome,Alzheimer disease,pp,TRUE,edge00192,2
+Metabolic syndrome,Body mass,pp,TRUE,edge00193,2
+Metabolic syndrome,Obesity-related traits,pp,TRUE,edge00194,2
+Metabolic syndrome,Liver enzyme levels,pp,TRUE,edge00195,6
+Metabolic syndrome,Type 2 diabetes,pp,TRUE,edge00196,4
+Metabolic syndrome,Metabolic traits,pp,TRUE,edge00197,12
+Metabolic syndrome,Subcutaneous adipose tissue,pp,TRUE,edge00198,2
+Metabolic syndrome,Biomedical quantitative traits,pp,TRUE,edge00199,2
+Metabolic syndrome,Metabolic syndrome,pp,TRUE,edge00200,37
+Metabolic syndrome,Urate levels,pp,TRUE,edge00201,4
+Metabolic syndrome,Breast size,pp,TRUE,edge00202,2
+Metabolic syndrome,Weight,pp,TRUE,edge00203,2
+Metabolic syndrome,Uric acid levels,pp,TRUE,edge00204,2
+Metabolic syndrome,Cholesterol total,pp,TRUE,edge00205,12
+Metabolic syndrome,Triglycerides,pp,TRUE,edge00206,20
+Metabolic syndrome,Menarche,pp,TRUE,edge00207,2
+Metabolic syndrome,Crohn disease,pp,TRUE,edge00208,4
+Amyotrophic lateral sclerosis,Amyotrophic lateral sclerosis,pp,TRUE,edge00209,46
+Bone mineral density,Ulcerative colitis,pp,TRUE,edge00210,2
+Bone mineral density,Endometriosis,pp,TRUE,edge00211,2
+Bone mineral density,Height,pp,TRUE,edge00212,10
+Bone mineral density,Bone mineral density,pp,TRUE,edge00213,105
+Bone mineral density,Metabolic traits,pp,TRUE,edge00214,2
+Bone mineral density,Biomedical quantitative traits,pp,TRUE,edge00215,2
+Bone mineral density,Breast cancer,pp,TRUE,edge00216,2
+Bone mineral density,Crohn disease,pp,TRUE,edge00217,2
+Cardiovascular disease risk factors,Urate levels,pp,TRUE,edge00218,6
+Cardiovascular disease risk factors,Cholesterol total,pp,TRUE,edge00219,12
+Cardiovascular disease risk factors,Chronic kidney disease,pp,TRUE,edge00220,2
+Cardiovascular disease risk factors,Red blood cell traits,pp,TRUE,edge00221,2
+Cardiovascular disease risk factors,Breast size,pp,TRUE,edge00222,2
+Cardiovascular disease risk factors,Uric acid levels,pp,TRUE,edge00223,4
+Cardiovascular disease risk factors,Response to statin therapy,pp,TRUE,edge00224,2
+Cardiovascular disease risk factors,Age-related macular degeneration,pp,TRUE,edge00225,6
+Cardiovascular disease risk factors,Metabolic traits,pp,TRUE,edge00226,4
+Cardiovascular disease risk factors,Alzheimer disease,pp,TRUE,edge00227,2
+Cardiovascular disease risk factors,Cardiovascular disease risk factors,pp,TRUE,edge00228,22
+Cardiovascular disease risk factors,Crohn disease,pp,TRUE,edge00229,2
+Cardiovascular disease risk factors,Liver enzyme levels,pp,TRUE,edge00230,2
+Cardiovascular disease risk factors,Triglycerides,pp,TRUE,edge00231,8
+Cardiovascular disease risk factors,LDL cholesterol,pp,TRUE,edge00232,10
+Hypothyroidism,Urate levels,pp,TRUE,edge00233,2
+Hypothyroidism,Chronic kidney disease,pp,TRUE,edge00234,2
+Hypothyroidism,Red blood cell traits,pp,TRUE,edge00235,2
+Hypothyroidism,Blood pressure,pp,TRUE,edge00236,2
+Hypothyroidism,Rheumatoid arthritis,pp,TRUE,edge00237,4
+Hypothyroidism,Celiac disease,pp,TRUE,edge00238,2
+Hypothyroidism,Hypothyroidism,pp,TRUE,edge00239,20
+Hypothyroidism,Thyroid hormone levels,pp,TRUE,edge00240,6
+Hypothyroidism,Crohn disease,pp,TRUE,edge00241,2
+Visceral fat,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00242,2
+Visceral fat,Visceral adipose tissue adjusted for BMI,pp,TRUE,edge00243,4
+Visceral fat,Visceral fat,pp,TRUE,edge00244,39
+Thyroid hormone levels,Urate levels,pp,TRUE,edge00245,2
+Thyroid hormone levels,Type 2 diabetes,pp,TRUE,edge00246,2
+Thyroid hormone levels,Obesity-related traits,pp,TRUE,edge00247,2
+Thyroid hormone levels,Liver enzyme levels,pp,TRUE,edge00248,2
+Thyroid hormone levels,Thyroid hormone levels,pp,TRUE,edge00249,26
+Disc degeneration,Disc degeneration,pp,TRUE,edge00250,29
+Disc degeneration,Height,pp,TRUE,edge00251,2
+Red blood cell traits,Urate levels,pp,TRUE,edge00252,4
+Red blood cell traits,Systemic lupus erythematosus,pp,TRUE,edge00253,2
+Red blood cell traits,Chronic kidney disease,pp,TRUE,edge00254,4
+Red blood cell traits,Red blood cell traits,pp,TRUE,edge00255,48
+Red blood cell traits,Blood pressure,pp,TRUE,edge00256,2
+Red blood cell traits,Rheumatoid arthritis,pp,TRUE,edge00257,2
+Red blood cell traits,Cholesterol total,pp,TRUE,edge00258,4
+Red blood cell traits,Celiac disease,pp,TRUE,edge00259,4
+Red blood cell traits,Adiponectin levels,pp,TRUE,edge00260,2
+Red blood cell traits,Liver enzyme levels,pp,TRUE,edge00261,2
+Red blood cell traits,LDL cholesterol,pp,TRUE,edge00262,2
+Red blood cell traits,Triglycerides,pp,TRUE,edge00263,2
+Red blood cell traits,Crohn disease,pp,TRUE,edge00264,4
+Protein quantitative trait loci,Pancreatic cancer,pp,TRUE,edge00265,2
+Protein quantitative trait loci,End-stage coagulation,pp,TRUE,edge00266,2
+Protein quantitative trait loci,Asthma,pp,TRUE,edge00267,2
+Protein quantitative trait loci,Triglycerides,pp,TRUE,edge00268,2
+Protein quantitative trait loci,Protein quantitative trait loci,pp,TRUE,edge00269,48
+Blood pressure,Urate levels,pp,TRUE,edge00270,4
+Blood pressure,Chronic kidney disease,pp,TRUE,edge00271,2
+Blood pressure,Hypertension,pp,TRUE,edge00272,26
+Blood pressure,Blood pressure,pp,TRUE,edge00273,48
+Blood pressure,Rheumatoid arthritis,pp,TRUE,edge00274,2
+Blood pressure,Ventricular conduction,pp,TRUE,edge00275,2
+Blood pressure,Body mass,pp,TRUE,edge00276,2
+Blood pressure,Height,pp,TRUE,edge00277,2
+Blood pressure,Metabolic traits,pp,TRUE,edge00278,2
+Blood pressure,Schizophrenia,pp,TRUE,edge00279,2
+Blood pressure,Biomedical quantitative traits,pp,TRUE,edge00280,2
+Blood pressure,Celiac disease,pp,TRUE,edge00281,2
+Major depressive disorder,Major depressive disorder,pp,TRUE,edge00282,72
+Major depressive disorder,Conduct disorder,pp,TRUE,edge00283,2
+Ventricular conduction,Ventricular conduction,pp,TRUE,edge00284,25
+Response to statin therapy,Bilirubin levels,pp,TRUE,edge00285,2
+Response to statin therapy,Cholesterol total,pp,TRUE,edge00286,4
+Response to statin therapy,Response to statin therapy,pp,TRUE,edge00287,35
+Response to statin therapy,Metabolic traits,pp,TRUE,edge00288,4
+Response to statin therapy,Crohn disease,pp,TRUE,edge00289,2
+Response to statin therapy,Triglycerides,pp,TRUE,edge00290,2
+Response to statin therapy,Erectile dysfunction and prostate cancer treatment,pp,TRUE,edge00291,2
+Response to statin therapy,Liver enzyme levels,pp,TRUE,edge00292,2
+Response to statin therapy,LDL cholesterol,pp,TRUE,edge00293,6
+Visceral adipose tissue adjusted for BMI,Type 2 diabetes,pp,TRUE,edge00294,2
+Visceral adipose tissue adjusted for BMI,Bipolar disorder,pp,TRUE,edge00295,2
+Visceral adipose tissue adjusted for BMI,Visceral adipose tissue adjusted for BMI,pp,TRUE,edge00296,44
+Visceral adipose tissue adjusted for BMI,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00297,16
+Dialysis-related mortality,Dialysis-related mortality,pp,TRUE,edge00298,25
+Erectile dysfunction and prostate cancer treatment,Erectile dysfunction and prostate cancer treatment,pp,TRUE,edge00299,23
+Multiple sclerosis,Systemic lupus erythematosus,pp,TRUE,edge00300,2
+Multiple sclerosis,Ulcerative colitis,pp,TRUE,edge00301,2
+Multiple sclerosis,Rheumatoid arthritis,pp,TRUE,edge00302,2
+Multiple sclerosis,Ankylosing spondylitis,pp,TRUE,edge00303,2
+Multiple sclerosis,Celiac disease,pp,TRUE,edge00304,2
+Multiple sclerosis,Kawasaki disease,pp,TRUE,edge00305,2
+Multiple sclerosis,Multiple sclerosis,pp,TRUE,edge00306,77
+Multiple sclerosis,Primary biliary cirrhosis,pp,TRUE,edge00307,6
+Multiple sclerosis,Crohn disease,pp,TRUE,edge00308,6
+Alcoholism,Bipolar disorder,pp,TRUE,edge00309,2
+Alcoholism,Alcoholism,pp,TRUE,edge00310,19
+LDL cholesterol,Urate levels,pp,TRUE,edge00311,6
+LDL cholesterol,Chronic kidney disease,pp,TRUE,edge00312,2
+LDL cholesterol,Breast size,pp,TRUE,edge00313,2
+LDL cholesterol,Uric acid levels,pp,TRUE,edge00314,2
+LDL cholesterol,Cholesterol total,pp,TRUE,edge00315,88
+LDL cholesterol,Metabolic traits,pp,TRUE,edge00316,8
+LDL cholesterol,Age-related macular degeneration,pp,TRUE,edge00317,2
+LDL cholesterol,Obesity-related traits,pp,TRUE,edge00318,4
+LDL cholesterol,Biomedical quantitative traits,pp,TRUE,edge00319,4
+LDL cholesterol,Triglycerides,pp,TRUE,edge00320,28
+LDL cholesterol,Crohn disease,pp,TRUE,edge00321,4
+LDL cholesterol,Liver enzyme levels,pp,TRUE,edge00322,6
+LDL cholesterol,LDL cholesterol,pp,TRUE,edge00323,61
+Body mass,Urate levels,pp,TRUE,edge00324,2
+Body mass,Type 2 diabetes,pp,TRUE,edge00325,6
+Body mass,Pubertal anthropometrics,pp,TRUE,edge00326,2
+Body mass,Weight,pp,TRUE,edge00327,34
+Body mass,Smoking behavior,pp,TRUE,edge00328,2
+Body mass,Body mass,pp,TRUE,edge00329,91
+Body mass,Height,pp,TRUE,edge00330,4
+Body mass,Subcutaneous adipose tissue,pp,TRUE,edge00331,4
+Body mass,Biomedical quantitative traits,pp,TRUE,edge00332,2
+Body mass,Obesity-related traits,pp,TRUE,edge00333,2
+Body mass,Hypertension,pp,TRUE,edge00334,2
+Body mass,Breast cancer,pp,TRUE,edge00335,2
+Body mass,Menarche,pp,TRUE,edge00336,6
+Body mass,Crohn disease,pp,TRUE,edge00337,2
+Menopause,Schizophrenia,pp,TRUE,edge00338,2
+Menopause,Menopause,pp,TRUE,edge00339,23
+Conduct disorder,Conduct disorder,pp,TRUE,edge00340,36
+Myopia,Myopia,pp,TRUE,edge00341,77
+Myopia,Obesity-related traits,pp,TRUE,edge00342,2
+Endometriosis,Endometriosis,pp,TRUE,edge00343,27
+Urate levels,Chronic kidney disease,pp,TRUE,edge00344,16
+Urate levels,Rheumatoid arthritis,pp,TRUE,edge00345,2
+Urate levels,Renal function-related traits,pp,TRUE,edge00346,2
+Urate levels,Obesity-related traits,pp,TRUE,edge00347,2
+Urate levels,Liver enzyme levels,pp,TRUE,edge00348,4
+Urate levels,Ulcerative colitis,pp,TRUE,edge00349,2
+Urate levels,Metabolic traits,pp,TRUE,edge00350,4
+Urate levels,Urate levels,pp,TRUE,edge00351,54
+Urate levels,Breast size,pp,TRUE,edge00352,2
+Urate levels,Weight,pp,TRUE,edge00353,2
+Urate levels,Uric acid levels,pp,TRUE,edge00354,12
+Urate levels,Cholesterol total,pp,TRUE,edge00355,6
+Urate levels,Height,pp,TRUE,edge00356,2
+Urate levels,Celiac disease,pp,TRUE,edge00357,2
+Urate levels,Triglycerides,pp,TRUE,edge00358,6
+Urate levels,Crohn disease,pp,TRUE,edge00359,2
+Weight,Type 2 diabetes,pp,TRUE,edge00360,2
+Weight,Weight,pp,TRUE,edge00361,33
+Weight,Smoking behavior,pp,TRUE,edge00362,2
+Weight,Menarche,pp,TRUE,edge00363,6
+Weight,Subcutaneous adipose tissue,pp,TRUE,edge00364,4
+Weight,Height,pp,TRUE,edge00365,2
+Weight,Biomedical quantitative traits,pp,TRUE,edge00366,2
+Weight,Obesity-related traits,pp,TRUE,edge00367,2
+Weight,Crohn disease,pp,TRUE,edge00368,2
+Uric acid levels,Chronic kidney disease,pp,TRUE,edge00369,2
+Uric acid levels,Breast size,pp,TRUE,edge00370,2
+Uric acid levels,Uric acid levels,pp,TRUE,edge00371,22
+Uric acid levels,Cholesterol total,pp,TRUE,edge00372,2
+Uric acid levels,Renal function-related traits,pp,TRUE,edge00373,4
+Uric acid levels,Metabolic traits,pp,TRUE,edge00374,2
+Uric acid levels,Obesity-related traits,pp,TRUE,edge00375,2
+Uric acid levels,Triglycerides,pp,TRUE,edge00376,2
+Uric acid levels,Liver enzyme levels,pp,TRUE,edge00377,2
+Uric acid levels,Crohn disease,pp,TRUE,edge00378,2
+Celiac disease,Systemic lupus erythematosus,pp,TRUE,edge00379,4
+Celiac disease,Chronic kidney disease,pp,TRUE,edge00380,2
+Celiac disease,Rheumatoid arthritis,pp,TRUE,edge00381,10
+Celiac disease,Ankylosing spondylitis,pp,TRUE,edge00382,6
+Celiac disease,Primary biliary cirrhosis,pp,TRUE,edge00383,2
+Celiac disease,Celiac disease,pp,TRUE,edge00384,41
+Celiac disease,Ulcerative colitis,pp,TRUE,edge00385,8
+Celiac disease,Crohn disease,pp,TRUE,edge00386,12
+Hypertension,Chronic kidney disease,pp,TRUE,edge00387,2
+Hypertension,Height,pp,TRUE,edge00388,2
+Hypertension,Hypertension,pp,TRUE,edge00389,32
+Hypertension,Biomedical quantitative traits,pp,TRUE,edge00390,2
+Pancreatic cancer,Pancreatic cancer,pp,TRUE,edge00391,31
+Pancreatic cancer,End-stage coagulation,pp,TRUE,edge00392,2
+Acute lymphoblastic leukemia,Acute lymphoblastic leukemia,pp,TRUE,edge00393,23
+Crohn disease,Systemic lupus erythematosus,pp,TRUE,edge00394,4
+Crohn disease,Chronic kidney disease,pp,TRUE,edge00395,2
+Crohn disease,Asthma,pp,TRUE,edge00396,4
+Crohn disease,Pubertal anthropometrics,pp,TRUE,edge00397,2
+Crohn disease,Rheumatoid arthritis,pp,TRUE,edge00398,8
+Crohn disease,Ankylosing spondylitis,pp,TRUE,edge00399,8
+Crohn disease,Renal function-related traits,pp,TRUE,edge00400,2
+Crohn disease,Obesity-related traits,pp,TRUE,edge00401,4
+Crohn disease,Liver enzyme levels,pp,TRUE,edge00402,6
+Crohn disease,Ulcerative colitis,pp,TRUE,edge00403,22
+Crohn disease,Type 2 diabetes,pp,TRUE,edge00404,6
+Crohn disease,Metabolic traits,pp,TRUE,edge00405,6
+Crohn disease,Primary biliary cirrhosis,pp,TRUE,edge00406,2
+Crohn disease,Breast size,pp,TRUE,edge00407,2
+Crohn disease,Cholesterol total,pp,TRUE,edge00408,6
+Crohn disease,Height,pp,TRUE,edge00409,2
+Crohn disease,Triglycerides,pp,TRUE,edge00410,4
+Crohn disease,Crohn disease,pp,TRUE,edge00411,134
+Menarche,Type 2 diabetes,pp,TRUE,edge00412,2
+Menarche,Prostate cancer,pp,TRUE,edge00413,2
+Menarche,Alzheimer disease,pp,TRUE,edge00414,2
+Menarche,Subcutaneous adipose tissue,pp,TRUE,edge00415,2
+Menarche,Height,pp,TRUE,edge00416,8
+Menarche,Obesity-related traits,pp,TRUE,edge00417,2
+Menarche,Biomedical quantitative traits,pp,TRUE,edge00418,2
+Menarche,Menarche,pp,TRUE,edge00419,43
+Menarche,Pubertal anthropometrics,pp,TRUE,edge00420,10
+Alzheimer disease,Age-related macular degeneration,pp,TRUE,edge00421,4
+Alzheimer disease,Alzheimer disease,pp,TRUE,edge00422,65
+Alzheimer disease,Cholesterol total,pp,TRUE,edge00423,2
+Aging,Aging,pp,TRUE,edge00424,19
+Bipolar disorder,Bipolar disorder,pp,TRUE,edge00425,49
+Age-related macular degeneration,Age-related macular degeneration,pp,TRUE,edge00426,45
+Age-related macular degeneration,Cholesterol total,pp,TRUE,edge00427,4
+Age-related macular degeneration,End-stage coagulation,pp,TRUE,edge00428,2
+Age-related macular degeneration,Triglycerides,pp,TRUE,edge00429,4
+Chronic obstructive pulmonary disease,Smoking behavior,pp,TRUE,edge00430,2
+Chronic obstructive pulmonary disease,Airflow obstruction,pp,TRUE,edge00431,2
+Chronic obstructive pulmonary disease,Obesity-related traits,pp,TRUE,edge00432,2
+Chronic obstructive pulmonary disease,Chronic obstructive pulmonary disease,pp,TRUE,edge00433,48
+Chronic obstructive pulmonary disease,Liver enzyme levels,pp,TRUE,edge00434,2
+Chronic obstructive pulmonary disease,Pulmonary function,pp,TRUE,edge00435,2
+Adiponectin levels,Adiponectin levels,pp,TRUE,edge00436,26
+Adiponectin levels,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00437,2
+Adiponectin levels,Triglycerides,pp,TRUE,edge00438,2
+Pubertal anthropometrics,Cholesterol total,pp,TRUE,edge00439,2
+Pubertal anthropometrics,Pubertal anthropometrics,pp,TRUE,edge00440,24
+Pubertal anthropometrics,Height,pp,TRUE,edge00441,10
+Pubertal anthropometrics,Metabolic traits,pp,TRUE,edge00442,2
+Pubertal anthropometrics,Obesity-related traits,pp,TRUE,edge00443,2
+Pubertal anthropometrics,Liver enzyme levels,pp,TRUE,edge00444,2
+Rheumatoid arthritis,Systemic lupus erythematosus,pp,TRUE,edge00445,8
+Rheumatoid arthritis,Chronic kidney disease,pp,TRUE,edge00446,2
+Rheumatoid arthritis,Asthma,pp,TRUE,edge00447,2
+Rheumatoid arthritis,Ulcerative colitis,pp,TRUE,edge00448,4
+Rheumatoid arthritis,Rheumatoid arthritis,pp,TRUE,edge00449,67
+Rheumatoid arthritis,Height,pp,TRUE,edge00450,2
+Rheumatoid arthritis,Obesity-related traits,pp,TRUE,edge00451,2
+Rheumatoid arthritis,Kawasaki disease,pp,TRUE,edge00452,4
+Rheumatoid arthritis,Primary biliary cirrhosis,pp,TRUE,edge00453,4
+Ankylosing spondylitis,Ulcerative colitis,pp,TRUE,edge00454,6
+Ankylosing spondylitis,Ankylosing spondylitis,pp,TRUE,edge00455,22
+RR interval,RR interval,pp,TRUE,edge00456,20
+Attention deficit hyperactivity disorder,Attention deficit hyperactivity disorder,pp,TRUE,edge00457,45
+Sudden cardiac arrest,Sudden cardiac arrest,pp,TRUE,edge00458,50
+Thiazide-induced adverse metabolic effects in hype,Thiazide-induced adverse metabolic effects in hype,pp,TRUE,edge00459,59
+Smoking behavior,Smoking behavior,pp,TRUE,edge00460,35
+Smoking behavior,Airflow obstruction,pp,TRUE,edge00461,2
+Smoking behavior,Obesity-related traits,pp,TRUE,edge00462,2
+Subcutaneous adipose tissue,Type 2 diabetes,pp,TRUE,edge00463,2
+Subcutaneous adipose tissue,Subcutaneous adipose tissue,pp,TRUE,edge00464,37
+Subcutaneous adipose tissue,Obesity-related traits,pp,TRUE,edge00465,2
+Subcutaneous adipose tissue,Biomedical quantitative traits,pp,TRUE,edge00466,2
+Bilirubin levels,Metabolic traits,pp,TRUE,edge00467,4
+Bilirubin levels,Bilirubin levels,pp,TRUE,edge00468,24
+Height,Pulmonary function,pp,TRUE,edge00469,2
+Height,Obesity-related traits,pp,TRUE,edge00470,2
+Height,Ulcerative colitis,pp,TRUE,edge00471,2
+Height,Metabolic traits,pp,TRUE,edge00472,4
+Height,Prostate cancer,pp,TRUE,edge00473,2
+Height,Height,pp,TRUE,edge00474,317
+Height,Brain structure,pp,TRUE,edge00475,2
+Schizophrenia,Schizophrenia,pp,TRUE,edge00476,57
+Diabetic retinopathy,Diabetic retinopathy,pp,TRUE,edge00477,19
+Triglycerides,Chronic kidney disease,pp,TRUE,edge00478,2
+Triglycerides,Obesity-related traits,pp,TRUE,edge00479,4
+Triglycerides,Liver enzyme levels,pp,TRUE,edge00480,10
+Triglycerides,Metabolic traits,pp,TRUE,edge00481,10
+Triglycerides,Biomedical quantitative traits,pp,TRUE,edge00482,2
+Triglycerides,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00483,2
+Triglycerides,Breast size,pp,TRUE,edge00484,2
+Triglycerides,Cholesterol total,pp,TRUE,edge00485,28
+Triglycerides,Triglycerides,pp,TRUE,edge00486,52
+Systemic lupus erythematosus,Ulcerative colitis,pp,TRUE,edge00487,2
+Systemic lupus erythematosus,Systemic lupus erythematosus,pp,TRUE,edge00488,81
+Systemic lupus erythematosus,Kawasaki disease,pp,TRUE,edge00489,4
+Systemic lupus erythematosus,Primary biliary cirrhosis,pp,TRUE,edge00490,4
+Chronic kidney disease,Chronic kidney disease,pp,TRUE,edge00491,28
+Chronic kidney disease,Renal function-related traits,pp,TRUE,edge00492,6
+Chronic kidney disease,Liver enzyme levels,pp,TRUE,edge00493,2
+Chronic kidney disease,Metabolic traits,pp,TRUE,edge00494,4
+Chronic kidney disease,Breast size,pp,TRUE,edge00495,2
+Chronic kidney disease,Cholesterol total,pp,TRUE,edge00496,2
+Response to antipsychotic treatment,Response to antipsychotic treatment,pp,TRUE,edge00497,45
+Asthma,Ulcerative colitis,pp,TRUE,edge00498,2
+Asthma,Asthma,pp,TRUE,edge00499,45
+Asthma,Primary biliary cirrhosis,pp,TRUE,edge00500,2
+Pulmonary function,Pulmonary function,pp,TRUE,edge00501,30
+Pulmonary function,Airflow obstruction,pp,TRUE,edge00502,4
+Breast cancer,Type 2 diabetes,pp,TRUE,edge00503,2
+Breast cancer,Prostate cancer,pp,TRUE,edge00504,2
+Breast cancer,Breast cancer,pp,TRUE,edge00505,55
+Hemostatic factors and hematological phenotypes,Hemostatic factors and hematological phenotypes,pp,TRUE,edge00506,27
+Hemostatic factors and hematological phenotypes,Obesity-related traits,pp,TRUE,edge00507,2
+Renal function-related traits,Renal function-related traits,pp,TRUE,edge00508,28
+Renal function-related traits,Biomedical quantitative traits,pp,TRUE,edge00509,2
+Obesity-related traits,Airflow obstruction,pp,TRUE,edge00510,2
+Obesity-related traits,Obesity-related traits,pp,TRUE,edge00511,827
+Obesity-related traits,Liver enzyme levels,pp,TRUE,edge00512,6
+Obesity-related traits,Type 2 diabetes,pp,TRUE,edge00513,2
+Obesity-related traits,Metabolic traits,pp,TRUE,edge00514,4
+Obesity-related traits,Biomedical quantitative traits,pp,TRUE,edge00515,2
+Obesity-related traits,Cholesterol total,pp,TRUE,edge00516,4
+Kawasaki disease,Ulcerative colitis,pp,TRUE,edge00517,2
+Kawasaki disease,Kawasaki disease,pp,TRUE,edge00518,19
+Liver enzyme levels,Liver enzyme levels,pp,TRUE,edge00519,50
+Liver enzyme levels,Metabolic traits,pp,TRUE,edge00520,8
+Liver enzyme levels,Breast size,pp,TRUE,edge00521,2
+Liver enzyme levels,Cholesterol total,pp,TRUE,edge00522,6
+Ulcerative colitis,Ulcerative colitis,pp,TRUE,edge00523,78
+Ulcerative colitis,Primary biliary cirrhosis,pp,TRUE,edge00524,2
+Type 2 diabetes,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00525,2
+Type 2 diabetes,Prostate cancer,pp,TRUE,edge00526,2
+Type 2 diabetes,Type 2 diabetes,pp,TRUE,edge00527,104
+Type 2 diabetes,Biomedical quantitative traits,pp,TRUE,edge00528,2
+Refractive error,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00529,2
+Refractive error,Refractive error,pp,TRUE,edge00530,27
+Metabolic traits,Metabolic traits,pp,TRUE,edge00531,47
+Metabolic traits,Breast size,pp,TRUE,edge00532,2
+Metabolic traits,Cholesterol total,pp,TRUE,edge00533,10
+Biomedical quantitative traits,Cholesterol total,pp,TRUE,edge00534,4
+Biomedical quantitative traits,Biomedical quantitative traits,pp,TRUE,edge00535,34
+Primary biliary cirrhosis,Primary biliary cirrhosis,pp,TRUE,edge00536,28
+Visceral adipose tissue/subcutaneous adipose tissu,Visceral adipose tissue/subcutaneous adipose tissu,pp,TRUE,edge00537,39
+Prostate cancer,Prostate cancer,pp,TRUE,edge00538,55
+Breast size,Breast size,pp,TRUE,edge00539,31
+Breast size,Cholesterol total,pp,TRUE,edge00540,2
+Cholesterol total,Cholesterol total,pp,TRUE,edge00541,60
+Airflow obstruction,Airflow obstruction,pp,TRUE,edge00542,29
+Non-alcoholic fatty liver disease histology,Non-alcoholic fatty liver disease histology,pp,TRUE,edge00543,38
+Response to antidepressant treatment,Response to antidepressant treatment,pp,TRUE,edge00544,22
+End-stage coagulation,End-stage coagulation,pp,TRUE,edge00545,19
+Brain structure,Brain structure,pp,TRUE,edge00546,21

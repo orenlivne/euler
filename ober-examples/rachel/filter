@@ -1,0 +1,7 @@
+#!/bin/bash
+low="$1"
+high="$2"
+awk -v low=${low} -v high=${high} '$1 >= low && $2 >= low && $3 >= low && $(NF) <= high && $(NF-1) <= high'
+
+# General number of columns could be implemented like ...
+#awk -v start=3 -v stop=2 low=30 -v high=80 'match = 1; for (i = 1; i <= start; i++) { if ($i > low) { match = 0; break; } } ...

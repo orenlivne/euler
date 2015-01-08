@@ -1,0 +1,12 @@
+chr14.10.txt
+chr19.8.txt
+chr1.18.txt
+chr8.2.txt
+chr15.7.txt
+chr14.5.txt
+chr14.8.txt
+chr10.4.txt
+chr4.13.txt
+chr12.4.txt
+chr20.17.txt
+chr14.1.txt

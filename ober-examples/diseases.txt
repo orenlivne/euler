@@ -1,0 +1,505 @@
+Abdominal aortic aneurysm
+Activated partial thromboplastin time
+Acute lymphoblastic leukemia
+Addiction
+Adiponectin levels
+Adiposity
+Adverse response to aromatase inhibitors
+Age-related macular degeneration
+Aging
+AIDS
+AIDS progression
+Airflow obstruction
+Alcohol consumption
+Alcohol dependence
+Alcoholism
+Allergic rhinitis
+Alopecia areata
+Alzheimer disease
+Alzheimer disease biomarkers
+Amyloid A Levels
+Amyotrophic lateral sclerosis
+Androgen levels
+Angiotensin-converting enzyme activity
+Ankle-brachial index
+Ankylosing spondylitis
+Anorexia nervosa
+Anthropometric traits
+Anticoagulant levels
+Anti-cyclic Citrullinated Peptide Antibody
+Antipsychotic drug-induced weight gain
+Aortic root size
+Arterial stiffness
+Arthritis
+Aspartate aminotransferase
+Asperger disorder
+Aspirin exacerbated respiratory disease in asthmatics
+Asthma
+Atopic dermatitis
+Atopy
+Atrial fibrillation
+Atrial fibrillation/atrial flutter
+Atrioventricular conduction
+Attention deficit hyperactivity disorder
+Attention deficit hyperactivity disorder and conduct disorder
+Attention deficit hyperactivity disorder symptoms
+Autism
+Autism spectrum disorder attention deficit-hyperactivity disorder bipolar disorder major depressive disorder and schizophrenia
+Barrett esophagus
+Basal cell carcinoma
+Behcet disease
+&beta;2-Glycoprotein I  plasma levels
+Beta-2 microglubulin plasma levels
+Beta thalassemia/hemoglobin E disease
+Beta-trace protein levels
+Biliary atresia
+Bilirubin levels
+Biochemical measures
+Biomedical quantitative traits
+Bipolar disorder
+Bipolar disorder and major depressive disorder
+Birth weight
+Bitter taste response
+Bladder cancer
+Bleomycin sensitivity
+Blond vs. brown hair color
+Blood pressure
+Blue vs. brown eyes
+Blue vs. green eyes
+Body mass
+Body mass in chronic obstructive pulmonary disease
+Body mass index
+Bone mineral density
+Brachial circumference
+Brain connectivity
+Brain imaging in schizophrenia
+Brain lesion load
+Brain structure
+Breast cancer
+Breast size
+Burning and freckling
+Butyrylcholinesterase levels
+Caffeine consumption
+Calcium levels
+Cannbis use
+Cardiac repolarization
+Cardiac structure and function
+Cardiovascular disease risk factors
+Carotenoid and tocopherol levels
+Carotid atherosclerosis in HIV infection
+Carotid intima media thickness
+Caudate nucleus volume
+CD4:CD8 lymphocyte ratio
+Celiac disease
+Central corneal thickness
+Cholelithiasis-related traits in sickle cell anemia
+Cholesterol total
+Chronic Hepatitis C infection
+Chronic kidney disease
+Chronic kidney disease and serum creatinine levels
+Chronic lymphocytic leukemia
+Chronic myeloid leukemia
+Chronic obstructive pulmonary disease
+Chronic obstructive pulmonary disease-related biomarkers
+Circulating cell-free DNA
+Circulating vasoactive peptide levels
+Cleft lip
+Coagulation factor levels
+Coffee consumption
+Cognitive performance
+Colorectal cancer
+Common traits
+Complement C3 and C4 levels
+Comprehensive strength and appendicular lean mass
+Conduct disorder
+Corneal astigmatism
+Corneal curvature
+Corneal structure
+Coronary artery calcification
+Coronary heart disease
+Coronary spasm
+C-reactive protein
+C-reactive protein and white blood cell count
+Creatinine levels
+Crohn disease
+Crohn disease and sarcoidosis
+Cutaneous nevi
+Cystic fibrosis severity
+Cytomegalovirus antibody response
+D-dimer levels
+Dehydroepiandrosterone sulphate levels
+Dengue shock syndrome
+Depression
+Diabetes
+Diabetic retinopathy
+Dialysis-related mortality
+Diastolic blood pressure
+Dietary macronutrient intake
+Digit length ratio
+Disc degeneration
+Disease/Trait
+Drinking behavior
+Drug-induced liver injury
+Duodenal ulcer
+Dupuytren disease
+Eating disorders
+Electrocardiographic conduction measures
+Electrocardiographic traits
+Electroencephalographic traits in alcoholism
+Emphysema-related traits
+Endometrial cancer
+Endometriosis
+End-stage coagulation
+End-stage renal disease
+Eosinophil counts
+Eosinophilic esophagitis
+Epilepsy
+Epirubicin-induced leukopenia
+Epstein-Barr virus immune response
+Erectile dysfunction
+Erectile dysfunction and prostate cancer treatment
+Erythrocyte sedimentation rate
+E-selectin levels
+Esophageal cancer
+Esophageal cancer and gastric cancer
+Essential tremor
+Estradiol levels
+Event-related brain oscillations
+Ewing sarcoma
+Eye color
+Factor VII
+Fasting glucose-related traits
+Fasting insulin-related traits
+Fasting plasma glucose
+F-cell distribution
+Fetal hemoglobin levels
+Fibrinogen
+Folate pathway vitamin levels
+Follicular lymphoma
+Formal thought disorder in schizophrenia
+Freckles
+Freckling
+Fuchs corneal dystrophy
+Gallbladder cancer
+Gallstones
+Gambling
+Gamma gluatamyl transferase levels
+Gamma glutamyl transpeptidase
+Glaucoma
+Glioblastoma
+Glioma
+Glomerulosclerosis
+Glycated hemoglobin levels
+Gout
+Graves' disease
+Hair color
+Hair morphology
+Handedness in dyslexia
+HbA2 levels
+HDL cholesterol
+Head circumference
+Hearing impairment
+Heart failure
+Height
+Hematology traits
+Hemoglobin
+Hemostatic factors and hematological phenotypes
+Hepatitis B
+Hepatitis C induced liver cirrhosis
+Hepatitis C induced liver fibrosis
+Hepatocellular carcinoma
+Hip bone size
+Hippocampal atrophy
+Hippocampal volume
+Hirschsprung disease
+HIV-1 control
+HIV-1 susceptibility
+Hoarding
+Hodgkin lymphoma
+Homocysteine levels
+HPV seropositivity
+Hypertension
+Hypertriglyceridemia
+Hypospadias
+Hypothyroidism
+Idiopathic pulmonary fibrosis
+IgA nephropathy
+IgE grass sensitization
+IgE levels
+IgG glycosylation
+IgG levels
+IgM levels
+Immunoglobulin A
+Infantile hypertrophic pyloric stenosis
+Inflammatory biomarkers
+Inflammatory bowel disease
+Information processing speed
+Insomnia
+Insulin-like growth factors
+Insulin-related traits
+Insulin resistance/response
+Intelligence
+Interleukin-18 levels
+Intracranial aneurysm
+Intracranial volume
+Intraocular pressure
+Iron levels
+Iron status biomarkers
+Kawasaki disease
+Keloid
+Kidney stones
+Knee osteoarthritis
+LDL
+LDL cholesterol
+Left ventricular mass
+Leishmaniasis
+Lentiform nucleus volume
+Leprosy
+Life threatening arrhythmia
+Lipoprotein-associated phospholipase A2 activity and mass
+Lipoprotein-associated phospholipase A2 activity change in response to statin therapy
+Liver enzyme levels
+Longevity
+Lp  levels
+Lumiracoxib-related liver injury
+Lung adenocarcinoma
+Lung cancer
+Lung Cancer
+Lung cancer-asbestos exposure interaction
+Magnesium levels
+Major depressive disorder
+Major mood disorders
+Malaria
+Male infertility
+Male-pattern baldness
+Mammographic density
+Matrix metalloproteinase levels
+Mean corpuscular hemoglobin
+Mean corpuscular hemoglobin concentration
+Mean corpuscular volume
+Mean platelet volume
+Melanoma
+Menarche
+Menarche and menopause
+Meningioma
+Meningococcal disease
+Menopause
+Metabolic syndrome
+Metabolic traits
+Metabolite levels
+Methotrexate clearance
+Migraine
+Monocyte chemoattractant protein-1
+Monocyte count
+Monocyte early outgrowth colony forming units
+Mortality among heart failure patients
+Moyamoya disease
+Multiple cancers
+Multiple myeloma
+Multiple sclerosis
+Myasthenia gravis
+Myocardial infarction
+Myopia
+Narcolepsy
+Nasopharyngeal carcinoma
+Natriuretic peptide levels
+Neonatal lupus
+Nephropathy
+Nephrotic syndrome
+Neuranatomic and neurocognitive phenotypes
+Neuroblastoma
+Neuroticism
+Neutrophil count
+Nevirapine-induced rash
+N-glycan levels
+Nicotine dependence
+Non-albumin protein levels
+Nonalcoholic fatty liver disease
+Non-alcoholic fatty liver disease histology
+Non-obstructive azoospermia
+Non-small cell lung cancer
+Normalized brain volume
+Obesity
+Obesity and osteoporosis
+Obesity-related traits
+Oleic acid  plasma levels
+Optic disc parameters
+Orofacial clefts
+Osteoarthritis
+Osteonecrosis of the jaw
+Osteoporosis
+Otosclerosis
+Ovarian cancer
+Paget disease
+Pain
+Palmitic acid  plasma levels
+Palmitoleic acid  plasma levels
+Pancreatic cancer
+Pancreatitis
+Panic disorder
+Paraoxonase activity
+Parkinson disease
+Partial epilepsies
+Periodontal microbiota
+Periodontitis
+Peripheral artery disease
+Permanent tooth development
+Personality dimensions
+Phosphorus levels
+Phytosterol levels
+Pit-and-Fissure caries
+Platelet aggregation
+Platelet counts
+Polycystic ovary syndrome
+Premature ovarian failure
+Presence of antiphospholipid antibodies
+Primary biliary cirrhosis
+Primary sclerosing cholangitis
+Primary tooth development
+PR interval
+Progranulin levels
+Progressive supranuclear palsy
+Proinsulin levels
+Prostate cancer
+Prostate-specific antigen levels
+Protein biomarker
+Protein C levels
+Protein quantitative trait loci
+Psoriasis
+Psoriatic arthritis
+Pubertal anthropometrics
+Pulmonary arterial hypertension
+Pulmonary function
+QT interval
+Quantitative traits
+Radiation response
+Reasoning
+Recombination rate
+Red blood cell traits
+Red vs. non-red hair color
+Refractive error
+Renal cell carcinoma
+Renal function and chronic kidney disease
+Renal function-related traits
+Renal sinus fat
+Resistin levels
+Response to acetaminophen
+Response to antidepressants
+Response to antidepressant treatment
+Response to antipsychotic treatment
+Response to cerivastatin
+Response to cholinesterase inhibitors in Alzheimer disease
+Response to citalopram treatment
+Response to clopidogrel therapy
+Response to gemcitabine in pancreatic cancer
+Response to hepatitis C treatment
+Response to interferon beta therapy
+Response to irinotecan in non-small-cell lung cancer
+Response to metformin
+Response to statin therapy
+Response to tamoxifen in breast cancer
+Response to TNF antagonist treatment
+Response to tocilizumab in rheumatoid arthritis
+Response to Vitamin E supplementation
+Resting heart rate
+Restless legs syndrome
+Retinal vascular caliber
+Retinol levels
+Retinopathy in non-diabetics
+Rheumatoid arthritis
+RR interval
+Sagittal craniosynostosis
+Sarcoidosis
+Schizophrenia
+Schizophrenia bipolar disorder and depression
+Sclerosing cholangitis and ulcerative colitis
+Scoliosis
+Self-rated health
+Serum albumin level
+Serum ceruloplasmin levels
+Serum tamsulosin hydrochloride concentration
+Serum total protein level
+Sex hormone-binding globulin levels
+Sexual dysfunction
+Sickle cell anemia
+Skin pigmentation
+Skin sensitivity to sun
+Smoking behavior
+Smooth-surface caries
+Soluble E-selectin levels
+Soluble ICAM-1
+Soluble leptin receptor levels
+Sphingolipid levels
+Spine bone size
+Squamous cell carcinoma
+Stearic acid  plasma levels
+Stevens-Johnson syndrome and toxic epidermal necrolysis
+Stroke
+Subcutaneous adipose tissue
+Sudden cardiac arrest
+Suicidal ideation
+Suicide attempts in bipolar disorder
+Systemic lupus erythematosus
+Systemic sclerosis
+Systolic blood pressure
+Tanning
+Telomere length
+Temperament
+Testicular germ cell cancer
+Testicular germ cell tumor
+Testosterone levels
+Tetralogy of Fallot
+Thiazide-induced adverse metabolic effects in hypertensive patients
+Thyroid cancer
+Thyroid function
+Thyroid hormone levels
+Thyroid stimulating hormone
+Thyroid volume
+Thyrotoxic hypokalemic periodic paralysis
+Tourette syndrome
+Triglycerides
+Tuberculosis
+Tumor biomarkers
+Type 1 diabetes
+Type 1 diabetes nephropathy
+Type 2 diabetes
+Type 2 diabetes and other traits
+Type 2 diabetes nephropathy
+Ulcerative colitis
+Upper aerodigestive tract cancers
+Urate levels
+Uric acid levels
+Urinary albumin excretion
+Urinary bladder cancer
+Urinary metabolites
+Urinary symptoms in response to radiotherapy in prostate cancer
+Uterine fibroids
+Vaccine-related adverse events
+Vascular dementia
+Vascular endothelial growth factor levels
+Venous thromboembolism
+Ventricular conduction
+Vertical cup-disc ratio
+Visceral adipose tissue adjusted for BMI
+Visceral adipose tissue/subcutaneous adipose tissue ratio
+Visceral fat
+Vitamin B12 levels
+Vitamin D insufficiency
+Vitamin D levels
+Vitamin E levels
+Vitiligo
+vWF and FVIII levels
+Waist circumference
+Waist circumference and related phenotypes
+Waist-hip ratio
+Waist-to-hip circumference ratio
+Warfarin maintenance dose
+Weight
+White blood cell count
+White blood cell types
+White matter hyperintensity burden
+White matter integrity
+Wilms tumor
+Working memory
+Wrist bone mass
+YKL-40 levels
