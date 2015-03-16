@@ -35,7 +35,7 @@ def saw_the_stick(stick_len):
   # stick_len, if exists, otherwise returns an empty list.
   # Complexity: O(N**0.5) using brute force over m and determining if there
   # exists an n for each m.
-  m_max = int(math.ceil((2 * stick_len) ** (1. / 2.)))
+  m_max = int(math.ceil((2 * stick_len) ** (1. / 2.))) + 1
   Sn_to_n_map = dict([((n - 1) * n * (n + 1) / 6, n) for n in xrange(1, m_max)])
   solutions = filter(lambda (n, m): consecutive_triangular_sum(n, m) == stick_len,
                      ((Sn_to_n_map[(m - 1) * m * (m + 1)/6 - stick_len], m)
