@@ -22,13 +22,13 @@ Created on Mar 15, 2015
 import math, random
 
 def consecutive_triangular_sum(n, m):
-  # Returns the sum of the triangular numbers T_n,...,T_m where T_n=n*(n+1)/2,
-  # T_0=0.
-  return (m * (m + 1) * (m + 2) - (n - 1) * n * (n + 1)) / 6
+  # Returns the sum of the triangular numbers T_n,...,T_{m-1} where
+  # T_n = n*(n+1)/2, T_0 = 0.
+  return ((m - 1) * m * (m + 1) - (n - 1) * n * (n + 1)) / 6
 
 def triangular_sequence(n, m):
-  # Returns the sequence T_n,...,T_m of consecutive triangular numbers.
-  return [i * (i + 1) / 2 for i in xrange(n, m + 1)]
+  # Returns the sequence T_n,...,T_{m-1} of consecutive triangular numbers.
+  return [i * (i + 1) / 2 for i in xrange(n, m)]
 
 def saw_the_stick(stick_len):
   # Returns a longest list of consecutive triangular numbers whose sum is
@@ -36,11 +36,11 @@ def saw_the_stick(stick_len):
   # Complexity: O(N**0.5) using brute force over m and determining if there
   # exists an n for each m.
   m_max = int(math.ceil((2 * stick_len) ** (1. / 2.)))
-  Sn_to_n_map = dict([((n - 1) * n * (n + 1) / 6, n) for n in xrange(1, m_max + 1)])
+  Sn_to_n_map = dict([((n - 1) * n * (n + 1) / 6, n) for n in xrange(1, m_max)])
   solutions = filter(lambda (n, m): consecutive_triangular_sum(n, m) == stick_len,
-                     ((Sn_to_n_map[m * (m + 1) * (m + 2)/6 - stick_len], m)
-                      for m in xrange(1, m_max + 1)
-                      if m * (m + 1) * (m + 2)/6 - stick_len in Sn_to_n_map))
+                     ((Sn_to_n_map[(m - 1) * m * (m + 1)/6 - stick_len], m)
+                      for m in xrange(1, m_max)
+                      if (m - 1) * m * (m + 1)/6 - stick_len in Sn_to_n_map))
   return triangular_sequence(*max((m - n, (n, m)) for n, m in solutions)[1]) if solutions else []
 
 def is_integer(n):
@@ -63,7 +63,7 @@ if __name__ == '__main__':
   # Random tests.
   for _ in xrange(1000):
     m = random.randint(100, 2000)
-    n = random.randint(100, m + 1)
+    n = random.randint(100, m)
     N = consecutive_triangular_sum(n, m)
     actual = saw_the_stick(N)
     expected = triangular_sequence(n, m)
