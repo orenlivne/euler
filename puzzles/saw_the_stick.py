@@ -36,8 +36,8 @@ def saw_the_stick(stick_len):
   # Complexity: O(N**0.5) using brute force over m and determining if there
   # exists an n for each m.
   m_max = int(math.ceil((2 * stick_len) ** (1. / 2.)))
-  Sn_to_n_map = dict([((n - 1) * n * (n + 1)/6, n) for n in xrange(1, m_max + 1)])
-  solutions = filter(lambda (n,m): consecutive_triangular_sum(n, m) == stick_len,
+  Sn_to_n_map = dict([((n - 1) * n * (n + 1) / 6, n) for n in xrange(1, m_max + 1)])
+  solutions = filter(lambda (n, m): consecutive_triangular_sum(n, m) == stick_len,
                      ((Sn_to_n_map[m * (m + 1) * (m + 2)/6 - stick_len], m)
                       for m in xrange(1, m_max + 1)
                       if m * (m + 1) * (m + 2)/6 - stick_len in Sn_to_n_map))
@@ -50,7 +50,7 @@ def is_integer(n):
 def triangular_index(t):
   # Converts a triangular number t = T_n to its index n. n is integer if and
   # only if t is a triangular number.
-  return 0.5*(-1 + (1 + 8*t)**0.5)
+  return 0.5 * (-1 + (1 + 8 * t) ** 0.5)
 
 if __name__ == '__main__':
   # These "asserts" using only for self-checking and not necessary for
@@ -63,7 +63,7 @@ if __name__ == '__main__':
   # Random tests.
   for _ in xrange(1000):
     m = random.randint(100, 2000)
-    n = random.randint(100, m+1)
+    n = random.randint(100, m + 1)
     N = consecutive_triangular_sum(n, m)
     actual = saw_the_stick(N)
     expected = triangular_sequence(n, m)
