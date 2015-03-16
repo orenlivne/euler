@@ -33,16 +33,14 @@ def triangular_sequence(n, m):
 def saw_the_stick(stick_len):
   # Returns a longest list of consecutive triangular numbers whose sum is
   # stick_len, if exists, otherwise returns an empty list.
-  # Complexity: O(N) using brute force over all feasible consecutive sequences.
-  # TODO: do it in in O(N**0.5).
+  # Complexity: O(N**0.5) using brute force over m and determining if there
+  # exists an n for each m.
   m_max = int(math.ceil((2 * stick_len) ** (1. / 2.)))
   Sn_to_n_map = dict([((n - 1) * n * (n + 1)/6, n) for n in xrange(1, m_max + 1)])
-  solutions = [(n, m)
-               for (n, m) in
-               ((Sn_to_n_map[m * (m + 1) * (m + 2)/6 - stick_len], m)
-                for m in xrange(1, m_max + 1)
-                if m * (m + 1) * (m + 2)/6 - stick_len in Sn_to_n_map)
-               if consecutive_triangular_sum(n, m) == stick_len]
+  solutions = filter(lambda (n,m): consecutive_triangular_sum(n, m) == stick_len,
+                     ((Sn_to_n_map[m * (m + 1) * (m + 2)/6 - stick_len], m)
+                      for m in xrange(1, m_max + 1)
+                      if m * (m + 1) * (m + 2)/6 - stick_len in Sn_to_n_map))
   return triangular_sequence(*max((m - n, (n, m)) for n, m in solutions)[1]) if solutions else []
 
 def is_integer(n):
@@ -63,14 +61,13 @@ if __name__ == '__main__':
   assert saw_the_stick(882) == [], "1st example"
 
   # Random tests.
-  for _ in xrange(100):
-    m = random.randint(100, 200)
+  for _ in xrange(1000):
+    m = random.randint(100, 2000)
     n = random.randint(100, m+1)
     N = consecutive_triangular_sum(n, m)
     actual = saw_the_stick(N)
     expected = triangular_sequence(n, m)
     if actual != expected:
-      print n, m
       assert sum(actual) == N
       assert len(actual) >= len(expected)
       n_actual = triangular_index(actual[0])
