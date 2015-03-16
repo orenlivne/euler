@@ -35,9 +35,13 @@ def saw_the_stick(stick_len):
   # stick_len, if exists, otherwise returns an empty list.
   # Complexity: O(N) using brute force over all feasible consecutive sequences.
   # TODO: do it in in O(N**0.5).
+  m_max = int(math.ceil((2 * stick_len) ** (1. / 2.)))
+  Sn_to_n_map = dict([((n - 1) * n * (n + 1)/6, n) for n in xrange(1, m_max + 1)])
   solutions = [(n, m)
-               for m in xrange(1, int(math.ceil((2 * stick_len) ** (1. / 2.))) + 1)
-               for n in xrange(1, m + 1)
+               for (n, m) in
+               ((Sn_to_n_map[m * (m + 1) * (m + 2)/6 - stick_len], m)
+                for m in xrange(1, m_max + 1)
+                if m * (m + 1) * (m + 2)/6 - stick_len in Sn_to_n_map)
                if consecutive_triangular_sum(n, m) == stick_len]
   return triangular_sequence(*max((m - n, (n, m)) for n, m in solutions)[1]) if solutions else []
 
