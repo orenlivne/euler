@@ -1,0 +1,28 @@
+#!/bin/bash
+#--------------------------------------------------------------------
+# Load all of Katie's EVE ethnicity files into database where annotation table is.
+#
+# Author: Oren E. Livne
+# Date:   09-SEP-2013
+#--------------------------------------------------------------------
+
+# Constants
+EXEC="${HOME}/ober/code/misc/annotations/load_ethnicity_location"
+
+function process_batch
+{
+    prefix="$1"
+    out="$2"
+    ethnicities="$3"
+    for ethnicity in ${ethnicities}; do
+	ethnicity_lc=`echo ${ethnicity} | awk '{print tolower($0)}'`
+	${EXEC} ${prefix}_${ethnicity}frq_location.txt eve_${out}_${ethnicity_lc}
+    done
+}
+
+# Main program
+ethnicities="AA EA LA"
+# Rare-allele files
+#process_batch "all_samples_SNP_MAF_less_0_05" "rare" "${ethnicities}"
+# All-allele files
+process_batch "all_samples_SNP_autosomes_all_MAF" "all" "${ethnicities}"

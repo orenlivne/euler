@@ -1,0 +1,22 @@
+#!/bin/bash
+# Load Raphael's vtools annotation file into a MySQL database table.
+
+# Parameters
+in_file="$1"
+table_name="$2"
+
+sql="load_eve_annotation.sql"
+db_cmd="mysql -A -u ucsc -pucsc ucsc"
+
+# Clean input file: convert NA to NULL
+if [ ! -f ${in_file}.clean ]; then
+  echo "Converting input file to clean form ..."
+  cat ${in_file} | sed '1d' | sed 's/\tNA/\tNULL/g' > ${in_file}.clean
+fi
+
+echo "Loading file into database ..."
+in_path=$( readlink -f ${in_file} | sed -e 's/\//\\\//g' )
+cat ${sql} | sed -e "s/%TABLE_NAME%/${table_name}/g" -e "s/%IN_FILE%/${in_path}.clean/g" | ${db_cmd}
+
+# Print a report
+echo "`${db_cmd} -B -e "select count(*) from ${table_name}" | sed '1d'` rows loaded."
