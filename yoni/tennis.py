@@ -31,7 +31,7 @@ def compare_theoretical_and_sampling_results(p, k):
     avg_theoretical = theoretical_expected_length_to_k_in_a_row(p, k)
     # avg_old = 0
     print avg_theoretical
-    for n in xrange(1, 6):
+    for n in xrange(1, 8):
         sample_size = 10 ** n
         avg = expected_length_to_k_in_a_row(p, k, sample_size=sample_size)
         print sample_size, avg, abs(avg - avg_theoretical)
@@ -46,7 +46,7 @@ def plot_probability():
     P.hold(True)
     for k, c in zip(K, colors):
         P.plot(p, theoretical_expected_length_to_k_in_a_row(p, k), '%s-' % (c,), \
-               p, [expected_length_to_k_in_a_row(x, k, sample_size=1000) for x in p], '%s--' % (c,))
+               p, [expected_length_to_k_in_a_row(x, k, sample_size=10000) for x in p], '%s--' % (c,))
     P.grid(True)
     P.legend(['%d in a row' % (k,) for k in K])
     P.xlabel('Probability of Heads')
@@ -55,7 +55,7 @@ def plot_probability():
     P.show()
 
 if __name__ == '__main__':
+    compare_theoretical_and_sampling_results(0.25, 2)
     compare_theoretical_and_sampling_results(0.5, 3)
-    compare_theoretical_and_sampling_results(0.3, 2)
     plot_probability()
     
