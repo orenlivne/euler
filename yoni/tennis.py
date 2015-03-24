@@ -24,6 +24,19 @@ def length_to_k_in_a_row(p, k):
 def expected_length_to_k_in_a_row(p, k, sample_size=100):
     return (1.0 * sum(length_to_k_in_a_row(p, k) for _ in xrange(sample_size))) / sample_size
 
+def sum_expected_length_to_k_in_a_row(p, k, terms=100):
+    q = 1 - p
+    c = [p * q * (p ** (l - 1) + q ** (l - 1)) for l in xrange(1, k)]
+#    print 'c', c
+    x = [0] * (k - 1) + [p ** k + q ** k]
+    s = k * x[-1]
+#    print x
+    for n in xrange(k + 1, terms + k + 1):
+        x = x[1:] + [sum(x[-l] * c[l - 1] for l in xrange(1, k))]
+        s += n * x[-1]
+#        print 'n', n, 'x', x
+    return s
+
 def theoretical_expected_length_to_k_in_a_row(p, k):
     return (((k - 1) * p ** k - k * p ** (k - 1) + 1) * p ** 2 + ((k - 1) * (1 - p) ** k - k * (1 - p) ** (k - 1) + 1) * (1 - p) ** 2) / (p * (1 - p) * (p ** k + (1 - p) ** k)) + k
 
@@ -34,12 +47,13 @@ def compare_theoretical_and_sampling_results(p, k):
     for n in xrange(1, 8):
         sample_size = 10 ** n
         avg = expected_length_to_k_in_a_row(p, k, sample_size=sample_size)
-        print sample_size, avg, abs(avg - avg_theoretical)
+        avg_sum = sum_expected_length_to_k_in_a_row(p, k)
+        print sample_size, avg, avg_sum, abs(avg - avg_theoretical)
         # avg_old = avg
 
 def plot_probability():
     p = np.linspace(0.01, 0.5)
-    K = range(1, 6)
+    K = range(6)
     colors = ['k', 'b', 'g', 'r', 'm']
     P.figure(1)
     P.clf()
@@ -57,5 +71,5 @@ def plot_probability():
 if __name__ == '__main__':
     compare_theoretical_and_sampling_results(0.25, 2)
     compare_theoretical_and_sampling_results(0.5, 3)
-    plot_probability()
-    
+    # plot_probability()
+
