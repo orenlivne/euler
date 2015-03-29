@@ -22,19 +22,30 @@ def length_to_k_in_a_row(p, k):
     return seq_length
 
 def expected_length_to_k_in_a_row(p, k, sample_size=100):
-    return (1.0 * sum(length_to_k_in_a_row(p, k) for _ in xrange(sample_size))) / sample_size
+    s = 0
+    pmf = dict() 
+    for _ in xrange(sample_size):
+        x = length_to_k_in_a_row(p, k)
+        s += x
+        pmf[x] = pmf.setdefault(x, 0) + 1
+    print 'PMF'
+    r = 2 * p * (1 - p)
+    for k, v in sorted(pmf.iteritems()):
+        print 'k', k, 'sample', (1.0 * v) / sample_size, 'theoretical', r ** (k - 2) * (1 - r)
+    return (1.0 * s) / sample_size    
+    # return (1.0 * sum(length_to_k_in_a_row(p, k) for _ in xrange(sample_size))) / sample_size
 
 def sum_expected_length_to_k_in_a_row(p, k, terms=100):
     q = 1 - p
     c = [p * q * (p ** (l - 1) + q ** (l - 1)) for l in xrange(1, k)]
-#    print 'c', c
+    print 'c', c
     x = [0] * (k - 1) + [p ** k + q ** k]
     s = k * x[-1]
-#    print x
+    print 'n', k, 'x', x
     for n in xrange(k + 1, terms + k + 1):
         x = x[1:] + [sum(x[-l] * c[l - 1] for l in xrange(1, k))]
         s += n * x[-1]
-#        print 'n', n, 'x', x
+        print 'n', n, 'x', x
     return s
 
 def theoretical_expected_length_to_k_in_a_row(p, k):
@@ -70,6 +81,6 @@ def plot_probability():
 
 if __name__ == '__main__':
     compare_theoretical_and_sampling_results(0.25, 2)
-    compare_theoretical_and_sampling_results(0.5, 3)
+    #compare_theoretical_and_sampling_results(0.5, 3)
     # plot_probability()
 
