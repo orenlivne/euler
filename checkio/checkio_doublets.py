@@ -21,6 +21,8 @@ Input: Numbers as a list of integers.
 Output: The shortest chain from the first to the last number
 as a list of integers.
 
+http://www.checkio.org/mission/digits-doublets/
+
 Created on Mar 28, 2015
 @author: Oren Livne <oren.livne@gmail.com>
 ============================================================
@@ -29,15 +31,16 @@ import networkx as nx
 
 DIGITS = map(str, xrange(10))
 
-def shortest_doublet_graph(lst):
+def shortest_path_graph(lst):
     '''Returns the shortest path between the first and last element of lst in the undirected graph G whose
-    nodes are the elements of the list lst of n m-digit numbers, and an edge between x and y exists if
+    nodes are the elements of the list lst of n m-digit number strings, and an edge between x and y exists if
     and only if y can be obtained from x (and vice versa, of course) by changing one digit.
     Runtime complexity: O(E + n log n) where E = number of edges of G.'''
-    # Build the graph.
     if not lst: return []
+
+    # Build the graph.
     g = nx.Graph()
-    s = set(map(str, lst))
+    s = set(lst)
     m = len(s.__iter__().next())
     for x in s:
         # For each x, find all the possible graph neighbors that are one-digit away. Add edges to g
@@ -48,8 +51,45 @@ def shortest_doublet_graph(lst):
                 tweaked_digits[i] = different_digit
                 y = ''.join(tweaked_digits)
                 if y in s: g.add_edge(x, y)
+                
     # Use Dijkstra's algorithm to find the shortest path between the first and last elements of lst.
-    return map(int, nx.shortest_path(g, str(lst[0]), str(lst[-1])))
+    return nx.shortest_path(g, str(lst[0]), str(lst[-1]))
 
+def one_digit_apart(x, y):
+    return sum(xi != yi for xi, yi, in zip(x, y)) == 1  
+ 
+def shortest_path_steve(numbers):
+    if not numbers: return []
+    first, last = numbers[0], numbers[-1]
+    paths = [[last]]
+    
+    # Breadth-first search in the one-digit-apart graph: keep a list of paths ending
+    # with last. Augment each one with the neighbors of the first node on the path
+    # until we find one that starts with last.
+    num_paths = 0 
+    for path in paths:
+        num_paths += 1
+        if num_paths % 100000 == 0: print num_paths, path
+        for i in numbers[:-1]:
+            # The shortest path cannot have cycles, so only check paths of distinct nodes,
+            # hence the first check.
+            if i not in path and one_digit_apart(i, path[0]):
+                augmented_path = [i] + path
+                if i == first: return augmented_path
+                else: paths.append(augmented_path)
+                        
 if __name__ == '__main__':
-    print shortest_doublet_graph([123, 991, 323, 321, 329, 121, 921, 125, 999])
+    numbers = map(str, [123, 991, 323, 321, 329, 121, 921, 125, 999])
+    print shortest_path_graph(numbers)
+    print shortest_path_steve(['991', '999'])
+    
+    ladder = sorted([('%d%d%d' % (i, i, i)) for i in xrange(10)] + \
+    [('%d%d%d' % (i, i, i + 1)) for i in xrange(9)] + \
+    [('%d%d%d' % (i, i, i - 1)) for i in xrange(1, 10)] + \
+    [('%d%d%d' % (i, i+1, i)) for i in xrange(9)] + \
+    [('%d%d%d' % (i, i-1, i)) for i in xrange(1, 10)] + \
+    [('%d%d%d' % (i+1, i, i)) for i in xrange(9)] + \
+    [('%d%d%d' % (i-1, i, i)) for i in xrange(1, 10)])
+    print ladder
+    print shortest_path_graph(ladder)
+    print shortest_path_steve(ladder)
