@@ -74,10 +74,22 @@ def possible_ages_of_oldest(n, d):
                if min(len(u) for u in unique_ages) > 1]
   return set.union(*ambiguous) if ambiguous else set()
 
+def PossibleAgesOldest_ZinovySolution(daughters, age_product):
+    #First of all, regarding the problem itself, I thought about it for a long time in terms of combinations of prime factors, but never found something I was happy with. I decided to go with a direct approach, which is not necessarily all that wasteful, since many composite numbers may still be factors and limiting the range per level is also very strong. I then looked at your code and saw that you had indeed found all the prime factor combinations - very impressive. I am not sure what the speed up is - I believe it comes out to something like O(n^.5) in either case. Here is my code:
+    sum_to_oldest = {}
+    def Algorithm(daughters, age_product, age_sum, age_start):
+        if daughters == 1:
+            sum_to_oldest.setdefault(age_sum + age_product, []).append(age_product)
+        else:
+            for age in xrange(age_start, int(age_product ** (1. / daughters)) + 1):
+                if age_product % age == 0:
+                    Algorithm(daughters - 1, age_product / age, age_sum + age, age)
+    Algorithm(daughters, age_product, 0, 1)
+    return sorted(frozenset(it.chain(*it.ifilter(lambda v: len(v) > 1,
+                                                 sum_to_oldest.itervalues()))))
+  
 if __name__ == '__main__':
-  if len(sys.argv) != 3:
-    print 'Usage: python %s <age_product> <num_daughters>' % (sys.argv[0],)
-    sys.exit(-1)
-
-  print ','.join(map(str, sorted(possible_ages_of_oldest(
-      int(sys.argv[1]), int(sys.argv[2])))))
+    if len(sys.argv) != 3:
+        print 'Usage: python %s <age_product> <num_daughters>' % (sys.argv[0],)
+        sys.exit(-1)
+    print ','.join(map(str, sorted(possible_ages_of_oldest(int(sys.argv[1]), int(sys.argv[2])))))

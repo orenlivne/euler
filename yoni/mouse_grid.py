@@ -19,6 +19,11 @@ def cell_num(k, n):
     for m in xrange(1, len(k)): i = n * i + k[m]
     return i
 
+def unit_vector(d, k):
+    x = np.zeros((d, 1))
+    x[k] = 1.0
+    return x
+
 def absorbing_probability(n, d):
     '''Returns the probability of the top-left state transitioning to the aborbing bottom right state.'''
     if n % 2 == 0: raise ValueError('n must be odd')
@@ -47,7 +52,7 @@ def absorbing_probability(n, d):
     r = sorted(absorbing)
     Q = P[np.ix_(t, t)]
     R = P[np.ix_(t, r)]
-    return (linalg.inv(np.eye(len(t)) - Q) * R)[0, 1]
+    return linalg.solve(np.eye(len(t)) - Q, R * unit_vector(len(r), 1))[0, 0]
     
 def absorbing_state_experimental():
     state = (0, 0)
@@ -104,7 +109,7 @@ def absorbing_probability_experimental(sample_size=100):
 # 
 
 def plot_probability():
-    N = np.arange(3, 11, 2)
+    N = np.arange(3, 17, 2)
     D = np.arange(1, 4)
     colors = ['k', 'b', 'g', 'r', 'm']
     P.figure(1)
@@ -122,9 +127,9 @@ def plot_probability():
     P.show()
 
 if __name__ == '__main__':
-    for N in 2 ** np.arange(20):
+    for N in 2 ** np.arange(10):
         print N, absorbing_probability_experimental(sample_size=N)
     for d in xrange(1, 4):
-        for n in xrange(3, 11, 2):
+        for n in xrange(3, 17, 2):
             print n, d, absorbing_probability(n, d)
     plot_probability()
