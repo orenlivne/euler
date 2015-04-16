@@ -27,19 +27,21 @@ def max_rectangle_area_dynamic_programming(a):
     m, n = len(a), len(a[0])
     # Construct a matrix L where L[i][j] is the size (in cells) of the maximum all-True sub-matrix of a
     # whose bottom-left corner is (i-1,j-1), i=1,...,m, j=1,...,n. i=0, j=0 are conveniently-added dummy
-    # rows. L[i][j] is either a tuple (if the rectangle is non-empty) or 0 (if it is empty).
+    # rows.
     L = [[0 for _ in xrange(n + 1)] for _ in xrange(m + 1)]
+    print '-' * 80
     print 'a'
     print_matrix(a, '%d')    
     for i in xrange(1, m + 1):
         for j in xrange(1, n + 1):
             if a[i - 1][j - 1]:
-                left = L[i - 1][j]
-                up = L[i][j - 1]
+                left = L[i][j - 1]
+                up = L[i - 1][j]
                 if up == 0 and left == 0: L[i][j] = (1, 1)
-                elif up == 0: L[i][j] = (left[0] + 1, left[1]) 
-                elif left == 0: L[i][j] = (up[0], up[0] + 1)
-                else: L[i][j] = (max(left[0], up[0]), max(left[1], up[1]))
+                elif up == 0: L[i][j] = (left[0] + 1, 1)
+                elif left == 0: L[i][j] = (1, up[1] + 1)
+                else: L[i][j] = (min(left[0] + 1, up[0]), min(left[1], up[1] + 1))
+                print i - 1, j - 1, 'left', left, 'up', up, 'L', L[i][j]
             else: L[i][j] = 0
     print_matrix(L, '%s')
     print max(0 if l == 0 else l[0] * l[1] for row in L for l in row)
@@ -83,11 +85,11 @@ def compare_times(methods, num_experiments=100):
 
 if __name__ == '__main__':
     # These "asserts" using only for self-checking and not necessary for auto-testing
-#     assert checkio([u'G']) == 1, 'One cell - one variant'
-#     assert checkio([u'GS',
-#                     u'GS']) == 4, 'Four good cells'
-#     assert checkio([u'GT',
-#                     u'GG']) == 2, 'Four cells, but with a tree'
+    assert checkio([u'G']) == 1, 'One cell - one variant'
+    assert checkio([u'GS',
+                    u'GS']) == 4, 'Four good cells'
+    assert checkio([u'GT',
+                    u'GG']) == 2, 'Four cells, but with a tree'
     assert checkio([u'GGTGG',
                     u'TGGGG',
                     u'GSSGT',
