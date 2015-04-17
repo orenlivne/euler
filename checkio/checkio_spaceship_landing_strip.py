@@ -196,7 +196,6 @@ def max_rectangle_area_dp(a):
 # where p is the column of the previous 0 as we populate l from left-right and r from right-left.
   return max((h[i][j] * (l[i][j] + r[i][j] - 1)) for i in xrange(len(a)) for j in xrange(len(a[0]))
 
-
 def test_rmq(a):
   # Test range minium query module vs. brute force for all possible sub-arrays
   # of the array a.
