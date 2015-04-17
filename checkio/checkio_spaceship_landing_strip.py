@@ -111,7 +111,7 @@ def max_rectangle_area_dc(a, max_brute_force_size=4):
   # the right of the middle. This rectangle ranges from min(left[start:stop+1])
   # distance to the left the middle to min(right[start:stop+1]) to the right of
   # the boundary.
-  max_straddling_rectangle_area = max((stop - start + 1) * (range_minimum_query(a, m_left, start, stop) + range_minimum_query(a, m_right, start, stop)) for start in xrange(n) for stop in xrange(start, n))
+  max_straddling_rectangle_area = max((stop - start + 1) * (range_minimum_query(left, m_left, start, stop) + range_minimum_query(right, m_right, start, stop)) for start in xrange(n) for stop in xrange(start, n))
 
   # Divide step: max rectangle is either in the left half, in the right half, or
   # straddles the middle column.
