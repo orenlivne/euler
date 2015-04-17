@@ -54,7 +54,8 @@ def transpose(a):
 
 def sub_array(a, i, k, j, l):
   # Returns the sub-array a[i:k,j:l].
-  return [[a[m][n] for n in xrange(j, l)] for m in xrange(i, k)]
+  print 'sub_array(%d-%d, %d-%d)' % (i, k, j, l)
+  return [[a[p][q] for q in xrange(j, l)] for p in xrange(i, k)]
 
 def nearest_one_left_index(row, middle):
   # Returns the distance of the nearest one on the left of the index middle
@@ -63,7 +64,7 @@ def nearest_one_left_index(row, middle):
   n = len(row)
   try: i = it.dropwhile(lambda x: not x, xrange(middle - 1, -1, -1)).next()
   except StopIteration: i = 0
-  return middle - n
+  return middle - i
 
 def nearest_one_right_index(row, middle):
   # Returns the distance of the nearest one on the right of the index middle
@@ -72,11 +73,17 @@ def nearest_one_right_index(row, middle):
   n = len(row) 
   try: i = it.dropwhile(lambda x: not x, xrange(middle, n)).next()
   except StopIteration: i = n - 1
-  return n - middle
+  return i - middle
 
 def max_rectangle_area_brute_force(a):
   # Returns the maximum area of a sub-matrix of a boolean matrix a that contains
   # only True values. O(N^2) brute-force solution where N = #cells in a.'''
+
+  # TODO: replace all(.) clause by a dynamic programming that updates the number
+  # of non-zeros by fixing the rectangle size and moving its starting position
+  # one cell at a time and updating the number of non-zeros within it. As
+  # implemented here, the method may take more than O(N^2). I wonder why we
+  # still observe O(N^2) for random matrices.
   return max(k * l for i in xrange(len(a)) for j in xrange(len(a[0]))
              for k in xrange(1, len(a) - i + 1) for l in xrange(1, len(a[0]) - j + 1)
              if all(a[m][n] for m in xrange(i, i + k) for n in xrange(j, j + l)))
@@ -84,16 +91,17 @@ def max_rectangle_area_brute_force(a):
 def max_rectangle_area_dc(a, max_brute_force_size=4):
   # Returns the maximum area of a sub-matrix of a boolean matrix a that contains
   # only True values. ~O(N log N) divide-and-conquer implementation where
-  # N = #cells in a.  
-
+  # N = #cells in a.
   # If matrix is small enough, use brute-force. max_brute_force_size is a tunable parameter.
   m, n = len(a), len(a[0])
-  if m * n <= max_brute_force_size: return max_rectangle_area_brute_force(a)
+  if min(m, n) == 1 or m * n <= max_brute_force_size: return max_rectangle_area_brute_force(a)
 
   # Reduce to a matrix with m <= n.
   if m > n:
     a = transpose(a)
     m, n = n, m
+
+  print 'dc(%d x %d)' % (m, n)
 
   # Conquer step: rectangle straddles the middle column i = m/2.
   middle = m/2
@@ -110,18 +118,33 @@ def max_rectangle_area_dc(a, max_brute_force_size=4):
   # For each two heights, find the maximum 1-rectangle width to the left and to
   # the right of the middle. This rectangle ranges from min(left[start:stop+1])
   # distance to the left the middle to min(right[start:stop+1]) to the right of
-  # the boundary.
-  max_straddling_rectangle_area = max((stop - start + 1) * (range_minimum_query(left, m_left, start, stop) + range_minimum_query(right, m_right, start, stop)) for start in xrange(n) for stop in xrange(start, n))
+  # the boundary
+#  print 'left', left
+#  print 'm_left', m_left
+#  i, j = 0, 4
+#  print i, j
+#  actual, expected = left[range_minimum_query(left, m_left, i, j)], min(a[i:j+1])
+
+  for start in xrange(m):
+    for stop in xrange(start, m):
+#      print start, stop
+#      print range_minimum_query(left, m_left, start, stop)
+#      print range_minimum_query(right, m_right, start, stop)
+#  max_straddling_rectangle_area = max((stop - start + 1) * (range_minimum_query(left, m_left, start, stop) + range_minimum_query(right, m_right, start, stop)) for start in xrange(m) for stop in xrange(start, m))
+      max_straddling_rectangle_area = \
+      max((stop - start + 1) * 
+          (min(left[start:stop+1]) + min(right[start:stop+1]))
+          for start in xrange(m) for stop in xrange(start, m))
 
   # Divide step: max rectangle is either in the left half, in the right half, or
   # straddles the middle column.
-  return max(max_rectangle_area_dc(sub_array(a, 0, n, 0, middle)),
-             max_rectangle_area_dc(sub_array(a, 0, n, middle, m)),
+  return max(max_rectangle_area_dc(sub_array(a, 0, middle, 0, n)),
+             max_rectangle_area_dc(sub_array(a, middle, m, 0, n)),
              max_straddling_rectangle_area)
 
 def checkio(landing_map):
     a = [[x in 'GS' for x in row] for row in landing_map]
-    print '-'*80
+    print '-' * 80
     print_matrix(a)
     return max_rectangle_area_dc(a)
 
@@ -149,6 +172,30 @@ def compare_times(methods, num_experiments=100):
         print '\t%s: %.2f sec [%.2f]' % (methods[i][0], t[i], t[i] / t_old[i] if k > 0 else 0),
       print ''
       sz *= 2
+
+def max_rectangle_area_dp(a):
+  # Dynamic programming solution from http://stackoverflow.com/questions/11481868/largest-rectangle-of-1s-in-2d-binary-matrix. O(N).
+  # Similar to my divide-and-conquer, but no need for divide-and-conquer here. So no log term. Oh well. :)
+  m, n = len(a), len(a[0])
+
+  h = [[0 for _ in xrange(n)] for _ in xrange(m)]
+  for i in xrange(1, m):
+    for j in xrange(1, n):
+      h[i][j] = 0 if a[i][j] else (h[i-1][j] + 1)
+
+  l = [[0 for _ in xrange(n)] for _ in xrange(m)]
+  for j in xrange(1, n):
+    for i in xrange(m):
+      l[i][j] = c-p if a[i-1][j] == 0 else min(l[i-1][j], j - p)
+
+  r = [[0 for _ in xrange(n+1)] for _ in xrange(m)]
+  for j in xrange(n, -1, -1):
+    for i in xrange(m):
+      r[i][j] = p-c if a[i-1][j] == 0 else min(r[i - 1][j], p - c)
+
+# where p is the column of the previous 0 as we populate l from left-right and r from right-left.
+  return max((h[i][j] * (l[i][j] + r[i][j] - 1)) for i in xrange(len(a)) for j in xrange(len(a[0]))
+
 
 def test_rmq(a):
   # Test range minium query module vs. brute force for all possible sub-arrays
