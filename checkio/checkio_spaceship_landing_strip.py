@@ -106,7 +106,7 @@ def max_rectangle_area_dc(a, max_brute_force_size=4):
   # Build a data structure that allows us to query the maximum rectangle width
   # between each two heights start, stop along the middle column.
   m_left = preprocess_rmq(left)
-  m_right = preprocess_rmq(left)
+  m_right = preprocess_rmq(right)
   # For each two heights, find the maximum 1-rectangle width to the left and to
   # the right of the middle. This rectangle ranges from min(left[start:stop+1])
   # distance to the left the middle to min(right[start:stop+1]) to the right of
