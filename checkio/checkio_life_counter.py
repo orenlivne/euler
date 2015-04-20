@@ -31,66 +31,28 @@ Created on Apr 19, 2015
 @author: Oren Livne <livne@uchicago.edu>
 ============================================================
 '''
-from itertools import chain
+def is_live_at_next_tick(live, (i, j)):
+    # Return True if and only cell (i,j) is alive at tick t+1 given the list 'live' of live cells
+    # at tick t.
+    num_live_nbhrs = sum(1 for k in xrange(i - 1, i + 2) for l in xrange(j - 1, j + 2) if (k != i or l != j) and (k, l) in live)
+    return (num_live_nbhrs == 2 or num_live_nbhrs == 3) if (i, j) in live else (num_live_nbhrs == 3)
 
-class LifeGrid(object):
-    def __init__(self, init_state):
-        n = len(init_state)
-        self._state = dict(((i, j), init_state[i][j]) for i in xrange(n) for j in xrange(n))
-     
-    def state(self, i, j):
-        return self._state[(i, j)] if (i, j) in self._state else False
-     
-    def num_live_cells(self):
-        return sum(self._state.itervalues())
-     
-    def new_state(self, i, j):
-        # Return the new state of cell (i,j). Rules:
-        # Any live cell with fewer than two live neighbours dies, as if caused by under-population.
-        # Any live cell with two or three live neighbours lives on to the next generation.
-        # Any live cell with more than three live neighbours dies, as if by overcrowding.
-        # Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-        num_nbhrs = sum(self.state(k, l) for k in xrange(i - 1, i + 2) for l in xrange(j - 1, j + 2) if k != i or l != j)
-        return (num_nbhrs == 2 or num_nbhrs == 3) if self.state(i, j) else (num_nbhrs == 3)
- 
-    def update_state(self):
-        # Update existing cells and neighbors around those cells.
-        self._state = dict(chain((((i, j), self.new_state(i, j)) for (i, j) in self._state.iterkeys()),
-                                 (((k, l), self.new_state(k, l))
-                                 for (i, j) in self._state.iterkeys()
-                                 for k in xrange(i - 1, i + 2)
-                                 for l in xrange(j - 1, j + 2)
-                                 if k != i or l != j and (k, l) not in self._state)))
-        # Clear unused entries.
-        for (i, j) in [(i, j) for (i, j) in self._state.iterkeys() if sum(self.state(k, l) for k in xrange(i - 1, i + 2) for l in xrange(j - 1, j + 2)) == 0]:
-            del self._state[(i, j)]
-            
- 
-    def __str__(self):
-        index_min = min(self._state.keys())
-        index_max = max(self._state.keys())
-        s = ''
-        for i in xrange(index_min[0], index_max[0] + 1):
-            for j in xrange(index_min[1], index_max[1] + 1):
-                s += '%s ' % (str(int(self._state[(i, j)])) if (i, j) in self._state else '-',)
-            s += '\n'
-        s += '-' * (2 * (index_max[0] - index_min[0] + 1))
-        return s
- 
 def life_counter(state, tick_n):
-    # Pad state matrix with dead cells all around (Dirichlet boundary conditions).
-    grid = LifeGrid(state)
-    # print grid
+    # Keep a list of the currently live cells.
+    live = set((i, j) for i in xrange(len(state)) for j in xrange(len(state[0])) if state[i][j])
+    # Step in time.
     for _ in xrange(tick_n):
-        grid.update_state()
-        # print grid
-    return grid.num_live_cells()
+        # Live cells at next tick = live cells that were live before + live cells that were dead
+        # before in neighboring cells of currently live cells
+        live = set(cell for cell in live if is_live_at_next_tick(live, cell)) | \
+        set((k, l) for (i, j) in live
+            for k in xrange(i - 1, i + 2)
+            for l in xrange(j - 1, j + 2)
+            if (k != i or l != j) and (k, l) not in live and is_live_at_next_tick(live, (k, l)))
+    # Return the number of live cells at the final tick.
+    return len(live)
 
 if __name__ == '__main__':
-    assert life_counter(((0, 0, 0, 0, 0, 0, 1, 0),
-                         (1, 1, 0, 0, 0, 0, 0, 0),
-                         (0, 1, 0, 0, 0, 1, 1, 1)), 129) == 2
-    
     # These "asserts" using only for self-checking and not necessary for auto-testing
     assert life_counter(((0, 1, 0, 0, 0, 0, 0),
                          (0, 0, 1, 0, 0, 0, 0),
