@@ -31,6 +31,9 @@ Created on Apr 19, 2015
 @author: Oren Livne <livne@uchicago.edu>
 ============================================================
 '''
+from Tkinter import Tk
+import ttk
+
 def is_live_at_next_tick(live, (i, j)):
     # Return True if and only cell (i,j) is alive at tick t+1 given the list 'live' of live cells
     # at tick t.
@@ -45,9 +48,7 @@ def life_counter(state, tick_n):
         # Live cells at next tick = live cells that were live before + live cells that were dead
         # before in neighboring cells of currently live cells
         live = set(cell for cell in live if is_live_at_next_tick(live, cell)) | \
-        set((k, l) for (i, j) in live
-            for k in xrange(i - 1, i + 2)
-            for l in xrange(j - 1, j + 2)
+        set((k, l) for (i, j) in live for k in xrange(i - 1, i + 2) for l in xrange(j - 1, j + 2)
             if (k != i or l != j) and (k, l) not in live and is_live_at_next_tick(live, (k, l)))
     # Return the number of live cells at the final tick.
     return len(live)
@@ -76,3 +77,7 @@ if __name__ == '__main__':
                          (0, 0, 0, 0, 0),
                          (1, 1, 0, 1, 1),
                          (1, 1, 0, 1, 1)), 100) == 16, "Stones"
+
+    root = Tk()
+    ttk.Button(root, text="Hello World").grid()
+    root.mainloop()

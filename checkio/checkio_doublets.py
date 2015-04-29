@@ -77,6 +77,22 @@ def shortest_path_steve(numbers):
                 augmented_path = [i] + path
                 if i == first: return augmented_path
                 else: paths.append(augmented_path)
+
+# A solution without networkx.
+class MyGraph(object):
+    def __init__(self, edge_list):
+        self.nbhrs = dict()
+        for edge in edge_list: self.add_edge(edge[0], edge[1])
+
+    def add_edge(self, u, v):
+        self.nbhrs.setdefault(u, set([])).add(v)
+        self.nbhrs.setdefault(v, set([])).add(u)
+      
+    def __repr__(self):
+        print 'Graph edges:'
+        for u in self.nbhrs:
+            for v in self.nbhrs[u]:
+                print u, v
                         
 if __name__ == '__main__':
     numbers = map(str, [123, 991, 323, 321, 329, 121, 921, 125, 999])
