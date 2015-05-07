@@ -23,7 +23,7 @@ def length_to_k_in_a_row(p, k):
 
 def expected_length_to_k_in_a_row(p, k, sample_size=100):
     s = 0
-    pmf = dict() 
+    pmf = dict()
     for _ in xrange(sample_size):
         x = length_to_k_in_a_row(p, k)
         s += x
@@ -32,7 +32,7 @@ def expected_length_to_k_in_a_row(p, k, sample_size=100):
     r = 2 * p * (1 - p)
     for k, v in sorted(pmf.iteritems()):
         print 'k', k, 'sample', (1.0 * v) / sample_size, 'theoretical', r ** (k - 2) * (1 - r)
-    return (1.0 * s) / sample_size    
+    return (1.0 * s) / sample_size
     # return (1.0 * sum(length_to_k_in_a_row(p, k) for _ in xrange(sample_size))) / sample_size
 
 def sum_expected_length_to_k_in_a_row(p, k, terms=100):
@@ -83,4 +83,3 @@ if __name__ == '__main__':
     compare_theoretical_and_sampling_results(0.25, 2)
     #compare_theoretical_and_sampling_results(0.5, 3)
     # plot_probability()
-
