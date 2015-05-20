@@ -6,7 +6,7 @@ Created on Apr 11, 2015
 @author: Oren Livne <livne@uchicago.edu>
 ============================================================
 '''
-import itertools as it
+import itertools as it, time
 
 class Quarto(object):
   __LINES__ = [
@@ -74,6 +74,8 @@ class QuartoSolver(object):
     self.num_positions = 0
 
   def solve_quarto(self, game=Quarto([-1] * 16, 1), depth=0):
+    if depth == 0: self.start_time = time.time()
+
     if depth <= QuartoSolver.__MAX_DEPTH_TO_PRINT__:
       print ' ' * depth, 'Entering depth', depth
     # Returns the best outcome for the first player (1=win, 0=draw, -1=loss)
@@ -100,7 +102,7 @@ class QuartoSolver(object):
       # Undo the move.
       game_with_move_made.position[location] = -1
     if depth <= QuartoSolver.__MAX_DEPTH_TO_PRINT__:
-      print ' ' * depth, 'Finished depth', depth, 'best_result', best_result, 'num_positions', num_positions, 'total', self.num_positions
+      print ' ' * depth, 'Finished depth', depth, 'best_result', best_result, 'num_positions', num_positions, 'total', self.num_positions, 'positions/sec', (time.time() - self.start_time) / self.num_positions
     return best_result, num_positions
 
 if __name__ == '__main__':
