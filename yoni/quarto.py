@@ -23,6 +23,8 @@ class Quarto(object):
       ]
 
   __ATTRIBUTES__ = [1,2,4,8]
+  UNDECIDED = -2
+  __EMPTY__ = -1
 
   def __init__(self, position, next_player_to_move):
     self.position = position
@@ -30,21 +32,25 @@ class Quarto(object):
 
   def result(self):
     # Returns the result of the game: 1 if the first player wins, -1 if the
-    # second player wins, 0 if a draw, and None if the game is still undecided.
+    # second player wins, 0 if a draw, and UNDECIDED if the game is still
+    # undecided.
+
+    # Check if there's a four-in-a-row found; if so, the last player to move
+    # wins. This is the opponent of the next player to move.
     for line in Quarto.__LINES__:
       if self.four_in_a_row(line): 
-        # Four-in-a-row found; the last player to move wins.
+#        print line
         return -self.next_player_to_move
-    return 0 if all(x >= 0 for x in self.position) else None
+
+    # No four-in-a-row. If board is full, draw. Otherwise, game is undecided.
+    return Quarto.UNDECIDED if any(x == Quarto.__EMPTY__ for x in self.position) else 0
 
   def four_in_a_row(self, line):
     # Returns True if and only if there are four pieces on the line 'line'
     # sharing an attribute.
     pieces = [self.position[location] for location in line]
-    return all(piece >= 0 for piece in pieces) and \
+    return all(piece != Quarto.__EMPTY__ for piece in pieces) and \
     any(all(piece & a for piece in pieces) for a in Quarto.__ATTRIBUTES__)
-    
-    return other
 
   def possible_moves(self):
     # Generates all (piece, location) combinations for all legal moves.
@@ -53,7 +59,7 @@ class Quarto(object):
     # (availability-to-place) and mask of location availability.
     piece_available, location_available = [True] * 16, [False] * 16
     for location, piece in enumerate(self.position):
-      if piece >= 0: piece_available[piece] = False
+      if piece != Quarto.__EMPTY__: piece_available[piece] = False
       else: location_available[location] = True
     # Generate all (available piece, available location) combinations.
     for piece, location in \
@@ -73,14 +79,14 @@ class QuartoSolver(object):
     # Returns the best outcome for the first player (1=win, 0=draw, -1=loss)
     # when the initial position is game.position.
 
-    # Leaf node.
     result = game.result()
-    if result is not None:
-#      print game.position, result
+    # Leaf node.
+#    print game.position, result
+    if result != Quarto.UNDECIDED:
       self.num_positions += 1
       return result, 1
 
-    # Non-lead node, find best result among all children nodes.
+    # Non-leaf node, find best result among all children nodes.
     game_with_move_made = Quarto(list(game.position), -game.next_player_to_move)
     best_result = -2
     num_positions = 0
