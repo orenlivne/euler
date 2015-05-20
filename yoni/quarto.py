@@ -62,7 +62,7 @@ class Quarto(object):
       yield piece, location
 
 class QuartoSolver(object):
-  __MAX_DEPTH_TO_PRINT__ = 11
+  __MAX_DEPTH_TO_PRINT__ = 10
 
   def __init__(self):
     self.num_positions = 0
@@ -70,12 +70,13 @@ class QuartoSolver(object):
   def solve_quarto(self, game=Quarto([-1] * 16, 1), depth=0):
     if depth <= QuartoSolver.__MAX_DEPTH_TO_PRINT__:
       print ' ' * depth, 'Entering depth', depth
-    # Returns the best outcome for the first player (1=win, 0=draw, -1=loss) when
-    # the initial position is game.position.
+    # Returns the best outcome for the first player (1=win, 0=draw, -1=loss)
+    # when the initial position is game.position.
 
     # Leaf node.
     result = game.result()
     if result is not None:
+#      print game.position, result
       self.num_positions += 1
       return result, 1
 
