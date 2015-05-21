@@ -41,6 +41,7 @@ public:
 	}
 
 	// Accessors.
+	inline short GetBoard() const { return board_.value; }
 	inline short GetEmpty() const { return empty_.value; }
 	inline short GetPieceAvailable() const { return piece_available_.value; }
 	
@@ -49,7 +50,7 @@ public:
 	inline Result GetResult() const {
 		// Check if there's a quarto; if so, the last player to move wins. This is the
 		// opponent of the next player to move.
-
+		
 #define IS_QUARTO(p0, p1, p2, p3) \
 		if (!empty_.bit.b##p0 && !empty_.bit.b##p1 && !empty_.bit.b##p2 && !empty_.bit.b##p3 && \
 			IsQuarto(board_.piece.b##p0, board_.piece.b##p1, board_.piece.b##p2, board_.piece.b##p3)) { \
@@ -119,7 +120,7 @@ private:
     // Returns true if and only if there are pieces on all squares p0,...,p3 that share
 	// an attribute.
 	inline bool IsQuarto(const short p0,  const short p1, const short p2, const short p3) const {
-		for (short mask = 0x1; mask <= 0x8; mask << 1) {
+		for (short mask = 0x1; mask <= 0x8; mask <<= 1) {
 			const int p0_attribute = p0 & mask;
 			if ((p1 & mask == p0_attribute) ||
 				(p2 & mask == p0_attribute) || 
@@ -148,13 +149,13 @@ public:
 	// the initial position of game.
 	inline Quarto::Result Solve() {
 		// if depth == 0: self.start_time = time.time()
-		++depth_;
 		if (depth_ <= MAX_DEPTH_TO_PRINT) {
+			for (int i = 0; i < depth_; ++i) printf(" ");
 			printf("Entering depth %d\n", depth_);
 		}
 
 		Quarto::Result result = game_.GetResult();
-		//    print game.position, result
+		// printf("board %ld result %d\n", game_.GetBoard(), result);
 		if (result != Quarto::Result::UNDECIDED) {
 			// Leaf node.
 			++num_positions_;
@@ -163,7 +164,7 @@ public:
 		
 		// Non-leaf node, find best result among all children nodes.
 		Quarto::Result best_result = Quarto::Result::UNDECIDED;
-				
+
 		// Consider all (piece, location) combinations for all legal moves.
 		short empty = game_.GetEmpty();
 		for (short square = 0; square < 16; ++square) {
@@ -175,8 +176,10 @@ public:
 						game_.FillSquare(square, piece);
 						// Recurse.
 						if (game_.isCanonicalPosition()) {
+							++depth_;
 							Quarto::Result result = Solve();
 							best_result = std::max(best_result, result);
+							--depth_;
 						}
 						// Undo the move.
 						game_.ClearSquare(square);
@@ -188,6 +191,7 @@ public:
 		}		
 	  
 		if (depth_ <= MAX_DEPTH_TO_PRINT) {
+			for (int i = 0; i < depth_; ++i) printf(" ");
 			printf("Finished depth %d, best_result %d, #positions %ld\n", depth_, best_result, num_positions_);
 		}
 		return best_result;
