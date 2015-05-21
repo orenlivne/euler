@@ -3,7 +3,7 @@
 // Author: Oren Livne <oren.livne@gmail.com>
 
 #include <algorithm>
-#include <stdio.h>
+#include <stdio.h>		// printf
 #include <stdlib.h>     // exit, EXIT_FAILURE
 
 class Quarto {
