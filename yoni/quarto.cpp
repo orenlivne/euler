@@ -29,8 +29,8 @@ public:
 						  b8:1, b9:1, ba:1, bb:1, bc:1, bd:1, be:1, bf:1; } bit;
 	} SquareStatus;
 	
-	// Creates a Quarto position.
-	Quarto(const long board, const short empty, const Player player_to_move) :
+	// Creates the initial Quarto position.
+	/*Quarto(const long board, const short empty, const Player player_to_move) :
 		board_({board}), empty_({empty}), player_to_move_(player_to_move) {
 		piece_available_ = {0xff};
 		long b = board;
@@ -38,7 +38,8 @@ public:
 			piece_available_.value &= ~(1 << (b & 0x4));
 			b >>= 4;
 		}
-	}
+	}*/
+	Quarto() : board_({0}), empty_({0xff}), piece_available_({0xff}), player_to_move_(Quarto::Player::FIRST) {}
 
 	// Accessors.
 	inline short GetBoard() const { return board_.value; }
@@ -143,19 +144,20 @@ private:
 
 class QuartoSolver {
 public:
-	QuartoSolver() : game_(0, 0xff, Quarto::Player::FIRST), depth_(0), num_positions_(0L) {}
+	QuartoSolver() : game_(), depth_(0), num_positions_(0L) {}
 
 	// Returns the best outcome for the first player (1=win, 0=draw, -1=loss) starting from
 	// the initial position of game.
 	inline Quarto::Result Solve() {
+#define PAD for (int i = 0; i < depth_; ++i) { printf(" "); }
 		// if depth == 0: self.start_time = time.time()
 		if (depth_ <= MAX_DEPTH_TO_PRINT) {
-			for (int i = 0; i < depth_; ++i) printf(" ");
-			printf("Entering depth %d\n", depth_);
+			PAD; printf("Entering depth %d\n", depth_);
 		}
 
 		Quarto::Result result = game_.GetResult();
-		// printf("board %ld result %d\n", game_.GetBoard(), result);
+		PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+		PAD; printf("result %d\n", result);
 		if (result != Quarto::Result::UNDECIDED) {
 			// Leaf node.
 			++num_positions_;
@@ -172,8 +174,11 @@ public:
 				short piece_available = game_.GetPieceAvailable();
 				for (short piece = 0; piece < 16; ++piece) {
 					if (piece_available & 0x1) {
-						// Place the piece 'piece' in the board location 'location'.
+						// Place the piece 'piece' in the board location 'square'.
+						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+						PAD; printf("Placing piece %d on square %d\n", piece, square);
 						game_.FillSquare(square, piece);
+						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 						// Recurse.
 						if (game_.isCanonicalPosition()) {
 							++depth_;
@@ -182,7 +187,10 @@ public:
 							--depth_;
 						}
 						// Undo the move.
+						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+						PAD; printf("Clearing square %d\n", square);
 						game_.ClearSquare(square);
+						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 					}
 					piece_available >>= 1;
 				}
@@ -191,8 +199,7 @@ public:
 		}		
 	  
 		if (depth_ <= MAX_DEPTH_TO_PRINT) {
-			for (int i = 0; i < depth_; ++i) printf(" ");
-			printf("Finished depth %d, best_result %d, #positions %ld\n", depth_, best_result, num_positions_);
+			PAD; printf("Finished depth %d, best_result %d, #positions %ld\n", depth_, best_result, num_positions_);
 		}
 		return best_result;
 	}
