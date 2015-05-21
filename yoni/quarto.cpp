@@ -30,16 +30,7 @@ public:
 	} SquareStatus;
 	
 	// Creates the initial Quarto position.
-	/*Quarto(const long board, const short empty, const Player player_to_move) :
-		board_({board}), empty_({empty}), player_to_move_(player_to_move) {
-		piece_available_ = {0xff};
-		long b = board;
-		for (int i = 0; i < 16; ++i) {
-			piece_available_.value &= ~(1 << (b & 0x4));
-			b >>= 4;
-		}
-	}*/
-	Quarto() : board_({0}), empty_({0xff}), piece_available_({0xff}), player_to_move_(Quarto::Player::FIRST) {}
+	Quarto() : board_({0}), empty_({0xffff}), piece_available_({0xffff}), player_to_move_(Quarto::Player::FIRST) {}
 
 	// Accessors.
 	inline short GetBoard() const { return board_.value; }
@@ -156,7 +147,7 @@ public:
 		}
 
 		Quarto::Result result = game_.GetResult();
-		PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+		PAD; printf("board: %016lx empty: %04x piece_available: %04x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 		PAD; printf("result %d\n", result);
 		if (result != Quarto::Result::UNDECIDED) {
 			// Leaf node.
@@ -168,17 +159,18 @@ public:
 		Quarto::Result best_result = Quarto::Result::UNDECIDED;
 
 		// Consider all (piece, location) combinations for all legal moves.
-		short empty = game_.GetEmpty();
+		const short empty = game_.GetEmpty();
+		const short piece_available = game_.GetPieceAvailable();
+		PAD; printf("Moves: empty: %04x x piece_available: %04x\n", empty, piece_available);
 		for (short square = 0; square < 16; ++square) {
-			if (empty & 0x1) {
-				short piece_available = game_.GetPieceAvailable();
+			if ((empty >> square) & 0x1) {
 				for (short piece = 0; piece < 16; ++piece) {
-					if (piece_available & 0x1) {
+					if ((piece_available >> piece) & 0x1) {
 						// Place the piece 'piece' in the board location 'square'.
-						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+						PAD; printf("board: %016lx empty: %04x piece_available: %04x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 						PAD; printf("Placing piece %d on square %d\n", piece, square);
 						game_.FillSquare(square, piece);
-						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+						PAD; printf("board: %016lx empty: %04x piece_available: %04x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 						// Recurse.
 						if (game_.isCanonicalPosition()) {
 							++depth_;
@@ -187,15 +179,13 @@ public:
 							--depth_;
 						}
 						// Undo the move.
-						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+						PAD; printf("board: %016lx empty: %04x piece_available: %04x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 						PAD; printf("Clearing square %d\n", square);
 						game_.ClearSquare(square);
-						PAD; printf("board: %016lx empty: %02x piece_available: %02x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
+						PAD; printf("board: %016lx empty: %04x piece_available: %04x\n", game_.GetBoard(), game_.GetEmpty(), game_.GetPieceAvailable());
 					}
-					piece_available >>= 1;
 				}
 			}
-			empty >>= 1;
 		}		
 	  
 		if (depth_ <= MAX_DEPTH_TO_PRINT) {
