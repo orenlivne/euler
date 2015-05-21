@@ -102,7 +102,7 @@ class QuartoSolver(object):
       # Undo the move.
       game_with_move_made.position[location] = -1
     if depth <= QuartoSolver.__MAX_DEPTH_TO_PRINT__:
-      print ' ' * depth, 'Finished depth', depth, 'best_result', best_result, 'num_positions', num_positions, 'total', self.num_positions, 'positions/sec', (time.time() - self.start_time) / self.num_positions
+      print ' ' * depth, 'Finished depth', depth, 'best_result', best_result, 'num_positions', num_positions, 'total', self.num_positions, 'hrs/position', (time.time() - self.start_time) / (3600 * self.num_positions)
     return best_result, num_positions
 
 if __name__ == '__main__':
