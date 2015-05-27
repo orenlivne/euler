@@ -43,7 +43,7 @@ def generate_test_case(n, max_int=1024):
     return zip(t, numerator, denominator)
 
 def run_random_validation_tests(max_num_minions=7, num_tests=1000):
-    # Run random testing of fast method against brute force and validate that the agree.
+    # Runs random testing of fast method against brute force and validate that the agree.
     for n in xrange(1, max_num_minions + 1):
         print 'Testing with %d minions...' % (n,)
         for _ in xrange(num_tests):
