@@ -50,6 +50,7 @@ def num_ones(x):
 
 def xor_pairs(s, x):
     # Returns the number of ordered pairs (a,b) with s = a + b and x = a ^ b. Complexity: O(log s).
+    # Note: works even for x > s.
     return (1 << num_ones(x)) if ((s - x) & (2 * x + 1) == 0) else 0
 
 def xor_pairs_brute_force(s, x):
@@ -61,7 +62,7 @@ def validate_vs_brute_force(max_s=1000):
     # Runs random testing of fast method against brute force and validate that the agree.
     for s in xrange(max_s + 1):
         print 'Testing with sum = %d ...' % (s,),
-        for x in xrange(s + 1):  # a ^ b is a + b without carry, so must be <= a + b.
+        for x in xrange(s + 2):  # a ^ b is a + b without carry, so x <= s. But cover a larger number as a corner case.
             assert(xor_pairs(s, x) == xor_pairs_brute_force(s, x))
         print ' OK'
 
