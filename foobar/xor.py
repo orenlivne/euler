@@ -3,94 +3,70 @@
 Given a+b and a XOR b, what is the number of distinct
 ordered pairs (a,b) of positive integers?
 
+If there are solutions, every 1-bit in x multiplies their number by 2 (a can be 0 and b can be 1
+at that bit or vice versa, while their sum remains the same). Every 0-bit contributes one
+solution (the a- and b- bit are the same, so swapping them gives the same numbers). So the number
+of solutions is the number of 2^(1-bits in x).
+
+Example:
+s = 1010 = 10
+x = 0100 = 4
+a = A0BC (indeed, 0011 = 3)
+b = A1BC (indeed, 0111 = 7)
+OR
+a = A1BC (indeed, 0111 = 7)
+b = A0BC (indeed, 0011 = 3)
+So there are two solutions: (3,7), (7,3), and their number is indeed 2^(#bits in x) = 2^1 = 2.
+
+To determine if there are solutions, first fix all a's bits to 0 corresponding to x's 1-bits (as
+we said, a's and b's bits can be swapped there, so without loss of generality, set all of a's to
+0 and b's to 1). The rest are unknown. At x's 0-bits, b's bits equal a's bits. So adding a + b,
+each unknown a-bit is left-shifted. We therefore verify that all bits of of s-x are covered by the
+1-bits of 2*x.
+
+Example:
+s = 101110 = 78
+x = 110000 = 48
+So fix bits 4 and 5 in a to be 0. 
+a = 00ABCD
+b = 11ABCD
+s = a + b = 2*D + 4*C + 8*B + 16*A + 16 + 32 = s
+or s - x = 78 - 48 = 30 = 2*D + 4*C + 8*B + 16*A.
+So                 s - x =  011110
+Should equal                0ABCD0
+Note that          2*x+1 = 1100001
+AND get: (s-x) & (2*x+1) = 0000000 must be zero (otherwise we will have an s-x bit that's NOT
+                                   covered by left-shifted 0-bits x)
+
 Created on May 26, 2015
 @author: Oren Livne <oren.livne@gmail.com>
 ============================================================
 '''
-import random, time
-
-def num_digits(x):
+def num_ones(x):
+    # Returns the number of ones in the binary representation of x.
     count = 0
-    while x: count, x = count + 1, x / 2
+    while x: count, x = count + (x % 2), x / 2
     return count
 
 def xor_pairs(s, x):
-    # Returns the number of ordered pairs (a,b) with s = a + b and x = a ^ b.
-    # Runtime complexity: O(log s).
-    print 'xor_pairs(%d,%d)' % (s, x)
-    if s == 0:
-        num_solutions = 1 if x == 0 else 0
-        print 'xor_pairs(%d,%d) = %d' % (s, x, num_solutions) 
-        return num_solutions
-    if x == 0:
-        num_solutions = 1 if s % 2 == 0 else 0
-        print 'xor_pairs(%d,%d) = %d' % (s, x, num_solutions)
-        return num_solutions
-    num_s_digits, num_x_digits = num_digits(s), num_digits(x)
-    closest_two_power = 1 << (num_s_digits - 1)
-    print '#s', num_s_digits, '#x', num_x_digits, 'closest_two_power', closest_two_power
-    if num_x_digits == num_s_digits:
-        num_solutions = 2 * xor_pairs(s - closest_two_power, x - closest_two_power)
-    else:
-        num_solutions = xor_pairs(s - closest_two_power, x - (1 << (num_x_digits - 1)))
-    print 'xor_pairs(%d,%d) = %d' % (s, x, num_solutions)
-    return num_solutions
+    # Returns the number of ordered pairs (a,b) with s = a + b and x = a ^ b. Complexity: O(log s).
+    return (1 << num_ones(x)) if ((s - x) & (2 * x + 1) == 0) else 0
 
 def xor_pairs_brute_force(s, x):
-    # Returns the number of ordered pairs (a,b) with s = a + b and x = a ^ b using brute force.
-    # Runtime complexity: O(s).
+    # Returns the number of ordered pairs (a, b) with s = a + b and x = a ^ b using brute force.
+    # Complexity: O(s).
     return sum(1 for a in xrange(s + 1) if a ^ (s - a) == x)
 
-def run_random_validation_tests(max_s=100):
+def validate_vs_brute_force(max_s=1000):
     # Runs random testing of fast method against brute force and validate that the agree.
     for s in xrange(max_s + 1):
-        for x in xrange(2 * s):  # a ^ b cannot have more digits than a + b.
-            print '-' * 80
-            print 's', s, 'x', x, 'bf', xor_pairs_brute_force(s, x)  # , xor_pairs(s, x)
+        print 'Testing with sum = %d ...' % (s,),
+        for x in xrange(s + 1):  # a ^ b is a + b without carry, so must be <= a + b.
             assert(xor_pairs(s, x) == xor_pairs_brute_force(s, x))
-            
-#         print 'Testing with %d minions...' % (n,)
-#         for _ in xrange(num_tests):
-#             minions = generate_test_case(n)
-#             # The fast may not agree with brute force up to round-off errors if there are multiple
-#             # minimizers. Thus, check that both methods give the same minimum expected time, which must
-#             # be unique.
-#             t, numerator, denominator = zip(*minions)
-#             q = [1 - float(x) / y for x, y in zip(numerator, denominator)]
-#             y = expected_time(t, q, best_ordering_brute_force(minions))
-#             x = expected_time(t, q, best_ordering(minions))
-#             if abs(x - y) > 1e-10 * abs(x):
-#                 t, numerator, denominator = zip(*minions)
-#                 q, n = [1 - float(x) / y for x, y in zip(numerator, denominator)], len(t)
-#                 print 'Found difference between brute force and fast methods!'    
-#                 print minions
-#                 print best_ordering(minions), x
-#                 print best_ordering_brute_force(minions), y
-#             assert(abs(x - y) < 1e-10 * abs(x))
-
-# def run_timing_tests(methods, max_num_minions=7, num_tests=1000):
-#     # Times the methods in the dictionary (label, method functor) against each other for increasingly
-#     # more minion numbers.
-#     methods = OrderedDict(methods)
-#     for n in xrange(1, max_num_minions + 1):
-#         total_time = [0] * len(methods)
-#         for _ in xrange(num_tests):
-#             minions = generate_test_case(n)
-#             for i, method in enumerate(methods.itervalues()):
-#                 t = time.time() 
-#                 method(minions)
-#                 total_time[i] += (time.time() - t)
-#         print '%d minions:' % (n,),
-#         for label, t in zip(methods.iterkeys(), total_time):
-#             print '\t%s: %8.2e s' % (label, t / num_tests),
-#         print ''
+        print ' OK'
 
 if __name__ == '__main__':
-    # assert(xor_pairs_brute_force(10, 4) == 2)  # (3,7), (7,3)
-    # assert(xor_pairs(10, 4) == 2)  # (3,7), (7,3)
-    
-    # assert(xor_pairs(100, 90) == 16)  # (3,7), (7,3)
-
-    # Generate random test cases, validate and time the fast method against brute force.
-    run_random_validation_tests()
-    # run_timing_tests([('Brute force', best_ordering_brute_force), ('Fast', best_ordering)])
+    assert(xor_pairs_brute_force(10, 4) == 2)  # (3,7), (7,3)
+    assert(xor_pairs(10, 4) == 2)  # (3,7), (7,3)
+    assert(xor_pairs(100, 90) == 16)
+    validate_vs_brute_force()
