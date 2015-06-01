@@ -8,6 +8,9 @@
 // TODO:
 // - Memoize positions. If using a weak hash map, prioritize by depth.
 // - If found a winning branch when it's his turn, no need to search rest of branches.
+// - If first player seems to be losing more than winning, maybe revert to a second-player
+//   perspective and apply the previous rule more effectively.
+// - Prune branches at move 2 using symmetries.
 
 #include <algorithm>
 #include <stdio.h>		// printf
@@ -88,13 +91,6 @@ class Quarto {
     board_[square] = EMPTY;
   }
 
-  // Returns true if and only if the game position is to be considered for processing by
-  // the solver. Optimization that utilizes symmetries of the constraints to reduce the number
-  // of position we have to look at.
-  inline bool isCanonicalPosition() const {
-    return true;
-  }
-
   void Print() {
     printf("board: ");
     for (int i = 0; i < BOARD_SIZE; ++i) {
@@ -160,6 +156,9 @@ class QuartoSolver {
     if (result != Quarto::UNDECIDED) {
       // Leaf node.
       ++num_positions_;
+      if (depth_ <= MAX_DEPTH_TO_PRINT) {
+        PAD; printf("Leaf node at depth %d, result %d, #positions %ld\n", depth_, result, num_positions_);
+      }
       return result;
     }
 
@@ -195,11 +194,9 @@ class QuartoSolver {
             game_.FillSquare(square, piece);
             //            PAD; game_.Print();
             // Recurse.
-            if (game_.isCanonicalPosition()) {
-              ++depth_;
-              best_result = std::max(best_result, Solve());
-              --depth_;
-            }
+            ++depth_;
+            best_result = std::max(best_result, Solve());
+            --depth_;
             // Undo the move.
             //            PAD; game_.Print();
             //            PAD; printf("Clearing square %d\n", square);
@@ -217,7 +214,7 @@ class QuartoSolver {
   }
 
  private:
-  static const int MAX_DEPTH_TO_PRINT = 10;
+  static const int MAX_DEPTH_TO_PRINT = 9;
 
   Quarto game_;
   int depth_;
