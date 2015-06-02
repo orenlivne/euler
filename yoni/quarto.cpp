@@ -7,13 +7,14 @@
 //
 // TODO:
 // - Memoize positions. If using a weak hash map, prioritize by depth.
-// - If found a winning branch when it's his turn, no need to search rest of branches.
-// - If first player seems to be losing more than winning, maybe revert to a second-player
-//   perspective and apply the previous rule more effectively.
+// - If found a winning branch when it's his turn, no need to search rest of
+//   branches.
+// - If first player seems to be losing more than winning, maybe revert to a
+//   second-player perspective and apply the previous rule more effectively.
 // - Prune branches at move 2 using symmetries.
 
 #include <algorithm>
-#include <stdio.h>		// printf
+#include <stdio.h>	// printf
 #include <stdlib.h>     // exit, EXIT_FAILURE
 #include <vector>
 
@@ -22,9 +23,9 @@ using std::vector;
 class Quarto {
  public:
   // Number of squares on the board.
-  static const char BOARD_SIZE = 16;
+  static const int BOARD_SIZE = 16;
   // Value of an empty square.
-  static const char EMPTY = BOARD_SIZE + 1;
+  static const char EMPTY = 16 + 1;
 
   // Game result from the view of the first player to place a piece.
   enum Result { UNDECIDED = -2, LOSS = -1, DRAW = 0, WIN = 1 };
@@ -32,43 +33,44 @@ class Quarto {
   enum Player { FIRST = -1, SECOND = 1 };
 
   // Creates the initial Quarto position.
-  Quarto() : player_to_move_(FIRST) {
-    board_.resize(BOARD_SIZE);
+  Quarto() : Quarto(vector<char>(EMPTY, BOARD_SIZE), FIRST) {}
+
+  // Creates a Quarto position.
+  Quarto(const vector<char>& board, Player player_to_move)
+      : board_(board), player_to_move_(player_to_move) {
     piece_available_.resize(BOARD_SIZE);
     for (int i = 0; i < BOARD_SIZE; ++i) {
-      board_[i] = EMPTY;
-      piece_available_[i] = true;
+      piece_available_[i] = (board_[i] == EMPTY);
     }
   }
 
   // Accessors.
   inline const vector<char>& GetBoard() const { return board_; }
-  inline const vector<bool>& GetPieceAvailable() const { return piece_available_; }
+
+  inline const vector<bool>& GetPieceAvailable() const {
+    return piece_available_;
+  }
 
   // Returns the result of the game: 1 if the first player wins, -1 if the
-  // second player wins, 0 if a draw, and UNDECIDED if the game is still undecided.
+  // second player wins, 0 if a draw, and UNDECIDED if the game is still
+  // undecided.
   inline Result GetResult() const {
-    // Check if there's a quarto; if so, the last player to move wins. This is the
-    // opponent of the next player to move.
+    // Check if there's a quarto; if so, the last player to move wins. This is
+    // the opponent of the next player to move.
 
-#define IS_QUARTO(p0, p1, p2, p3) \
-    IsQuarto(board_[0x##p0], board_[0x##p1], board_[0x##p2], board_[0x##p3])
-
-    if (IS_QUARTO(0, 1, 2, 3) ||
-        IS_QUARTO(4, 5, 6, 7) ||
-        IS_QUARTO(8, 9, a, b) ||
-        IS_QUARTO(c, d, e, f) ||
-        IS_QUARTO(0, 4, 8, c) ||
-        IS_QUARTO(1, 5, 9, d) ||
-        IS_QUARTO(2, 6, a, e) ||
-        IS_QUARTO(3, 7, b, f) ||
-        IS_QUARTO(0, 5, a, f) ||
-        IS_QUARTO(3, 6, 9, c)) {
+    if (IsQuarto(board_[0x0], board_[0x1], board_[0x2], board_[0x3]) ||
+        IsQuarto(board_[0x4], board_[0x5], board_[0x6], board_[0x7]) ||
+        IsQuarto(board_[0x8], board_[0x9], board_[0xa], board_[0xb]) ||
+        IsQuarto(board_[0xc], board_[0xd], board_[0xe], board_[0xf]) ||
+        IsQuarto(board_[0x0], board_[0x4], board_[0x8], board_[0xc]) ||
+        IsQuarto(board_[0x1], board_[0x5], board_[0x9], board_[0xd]) ||
+        IsQuarto(board_[0x2], board_[0x6], board_[0xa], board_[0xe]) ||
+        IsQuarto(board_[0x3], board_[0x7], board_[0xb], board_[0xf]) ||
+        IsQuarto(board_[0x0], board_[0x5], board_[0xa], board_[0xf]) ||
+        IsQuarto(board_[0x3], board_[0x6], board_[0x9], board_[0xc])) {
       //printf("Found quarto\n");
       return player_to_move_ == FIRST ? LOSS : WIN;
     }
-
-#undef IS_QUARTO
 
     // No quarto present. If board is full, draw. Otherwise, game is undecided.
     for (int i = 0; i < BOARD_SIZE; ++i) {
@@ -105,9 +107,10 @@ class Quarto {
   }
 
  private:
-  // Returns true if and only if there are pieces on all squares p0,...,p3 that share
-  // an attribute ("quarto").
-  inline bool IsQuarto(const char p0,  const char p1, const char p2, const char p3) const {
+  // Returns true if and only if there are pieces on all squares p0,...,p3 that
+  // share an attribute ("quarto").
+  inline bool IsQuarto(
+      const char p0,  const char p1, const char p2, const char p3) const {
     //printf("%x %x %x %x\n", p0, p1, p2, p3);
     // If not all squares are occupied, we can't have a quarto.
     if (p0 == EMPTY || p1 == EMPTY || p2 == EMPTY || p3 == EMPTY) {
@@ -129,9 +132,11 @@ class Quarto {
     return false;
   }
 
-  // Encodes the pieces currently on the board.
+  // Encodes the pieces currently on the board. Pieces are coded as 0-15; an
+  // empty square is coded as 16.
   vector<char> board_;
-  // A mask that encodes whether each piece is not on the board (pieces are numbered 0-15).
+  // A mask that encodes whether each piece is not on the board (pieces are
+  // numbered 0-15).
   vector<bool> piece_available_;
   // The next player to place a piece on the board.
   Player player_to_move_;
@@ -141,8 +146,8 @@ class QuartoSolver {
  public:
   QuartoSolver() : game_(), depth_(0), num_positions_(0L) {}
 
-  // Returns the best outcome for the first player (1=win, 0=draw, -1=loss) starting from
-  // the initial position of game.
+  // Returns the best outcome for the first player (1=win, 0=draw, -1=loss)
+  // starting from the initial position of game.
   inline Quarto::Result Solve() {
 #define PAD for (int i = 0; i < depth_; ++i) { printf(" "); }
     // if depth == 0: self.start_time = time.time()
@@ -166,8 +171,8 @@ class QuartoSolver {
     Quarto::Result best_result = Quarto::UNDECIDED;
 
     // Consider all (piece, location) combinations for all legal moves.
-    // Deep-copy the game board and piece_available arrays because we are modifying
-    // game_ in the loop.
+    // Deep-copy the game board and piece_available arrays because we are
+    // modifying game_ in the loop.
     vector<char> board = game_.GetBoard();
     vector<bool> piece_available = game_.GetPieceAvailable();
     if (depth_ == 0) {
@@ -182,8 +187,8 @@ class QuartoSolver {
       piece_available[0] = true;
     }
 
-    // Traverse the children of the current tree node and find the best result for the first
-    // player among them.
+    // Traverse the children of the current tree node and find the best result
+    // for the first player among them.
     for (char square = 0; square < Quarto::BOARD_SIZE; ++square) {
       if (board[square] == Quarto::EMPTY) {
         for (char piece = 0; piece < Quarto::BOARD_SIZE; ++piece) {
