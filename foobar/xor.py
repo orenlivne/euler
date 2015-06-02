@@ -43,7 +43,7 @@ Created on May 26, 2015
 ============================================================
 '''
 def num_ones(x):
-    # Returns the number of ones in the binary representation of x.
+    # Returns the number of ones in the binary representation of x (equivalent to bin(n).count('1')).
     count = 0
     while x: count, x = count + (x % 2), x / 2
     return count
