@@ -253,7 +253,6 @@ public class QuartoTest {
 
   @Test
   public void getResultDrawForDrawnBoard() {
-    // Attribute 3, value = 0 in all pieces.
     char[] board = {
         0, 15, 3, 12, //
         3, 5, 6, 10, //
