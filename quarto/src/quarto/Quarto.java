@@ -113,7 +113,6 @@ public final class Quarto {
         || IsQuarto(board_[0x3], board_[0x7], board_[0xb], board_[0xf])
         || IsQuarto(board_[0x0], board_[0x5], board_[0xa], board_[0xf])
         || IsQuarto(board_[0x3], board_[0x6], board_[0x9], board_[0xc])) {
-      // System.out.println("Found quarto\n");
       return playerToMove_ == Player.FIRST ? Result.LOSS : Result.WIN;
     }
 
@@ -170,6 +169,8 @@ public final class Quarto {
       if (((p1 & mask) == p0_attribute) && ((p2 & mask) == p0_attribute)
           && ((p3 & mask) == p0_attribute)) {
         // System.out.println("Found quarto\n");
+        System.out.printf("Found quarto: %x %x %x %x attribute %x\n", (int) p0, (int) p1, (int) p2,
+            (int) p3, (int) mask);
         return true;
       }
     }
