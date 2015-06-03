@@ -137,19 +137,42 @@ public final class Quarto {
     board_[square] = EMPTY;
   }
 
-  void print() {
+  void shortPrint() {
     System.out.println("board: ");
     for (int i = 0; i < BOARD_SIZE; ++i) {
       if (board_[i] == EMPTY)
         System.out.println("-");
       else
-        System.out.printf("%x", board_[i]);
+        System.out.printf("%x", (int) board_[i]);
     }
     System.out.println(" pieceAvailable: ");
     for (int i = 0; i < BOARD_SIZE; ++i) {
       System.out.printf("%s", pieceAvailable_[i] ? "1" : "0");
     }
     System.out.println();
+  }
+
+  void print() {
+    System.out.println("board: ");
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+      System.out.printf(" %4s", pieceToString(board_[i]));
+      if (i % 4 == 3) {
+        System.out.println("");
+      }
+    }
+    System.out.println("pieceAvailable: ");
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+      System.out.printf("%s", pieceAvailable_[i] ? "1" : "0");
+    }
+    System.out.println();
+  }
+
+  static String pieceToString(char piece) {
+    if (piece == EMPTY) {
+      return "-";
+    } else {
+      return String.format("%4s", Integer.toBinaryString(piece)).replace(' ', '0');
+    }
   }
 
   // Returns true if and only if there are pieces on all squares p0,...,p3 that

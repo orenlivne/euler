@@ -5,7 +5,9 @@ import static quarto.Quarto.EMPTY;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Quarto board unit tests.
@@ -254,12 +256,30 @@ public class QuartoTest {
   @Test
   public void getResultDrawForDrawnBoard() {
     char[] board = {
-        0, 15, 3, 12, //
-        3, 5, 6, 10, //
-        14, 7, 11, 9, //
-        8, 2, 1, 4,
+        9, 8, 14, 4, //
+        0, 11, 10, 13, //
+        12, 6, 5, 3, //
+        15, 1, 7, 2,
     };
+
     testGetResultReturnsExpectedResult(board, Quarto.Result.DRAW);
+    assertBoardIsFull(board);
+  }
+
+  @Test
+  public void getResultDrawForRandomDrawnBoard() {
+    Quarto quarto = generateRandomBoardWithResult(Quarto.Result.DRAW);
+    testGetResultReturnsExpectedResult(quarto.getBoard(), Quarto.Result.DRAW);
+    assertBoardIsFull(quarto.getBoard());
+  }
+
+  private void assertBoardIsFull(char[] board) {
+    Quarto quarto = Quarto.newInstance(board, Quarto.Player.FIRST);
+    boolean[] pieceAvailable = quarto.getPieceAvailable();
+    for (int i = 0; i < Quarto.BOARD_SIZE; i++) {
+      Assert.assertNotEquals(EMPTY, board[i]);
+      Assert.assertFalse(pieceAvailable[i]);
+    }
   }
 
   private void testGetResultCorrectForConclusiveBoard(char[] board) {
@@ -291,6 +311,26 @@ public class QuartoTest {
       Assert.assertEquals(
           "Difference at index " + i + ": expected " + expecteds[i] + " actual " + actuals[i],
           expecteds[i], actuals[i]);
+    }
+  }
+
+  private static Quarto generateRandomBoardWithResult(Quarto.Result result) {
+    char[] board = null;
+    while (true) {
+      List<Character> list = new ArrayList<Character>();
+      for (char i = 0; i < 16; i++) {
+        list.add(i);
+      }
+      java.util.Collections.shuffle(list);
+      board = new char[16];
+      for (char i = 0; i < 16; i++) {
+        board[i] = list.get(i);
+      }
+      Quarto quarto = Quarto.newInstance(board, Quarto.Player.FIRST);
+      quarto.print();
+      if (quarto.getResult() == result) {
+        return quarto;
+      }
     }
   }
 }
