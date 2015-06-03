@@ -327,7 +327,6 @@ public class QuartoTest {
         board[i] = list.get(i);
       }
       Quarto quarto = Quarto.newInstance(board, Quarto.Player.FIRST);
-      quarto.print();
       if (quarto.getResult() == result) {
         return quarto;
       }

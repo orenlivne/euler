@@ -192,8 +192,8 @@ public final class Quarto {
       if (((p1 & mask) == p0_attribute) && ((p2 & mask) == p0_attribute)
           && ((p3 & mask) == p0_attribute)) {
         // System.out.println("Found quarto\n");
-        System.out.printf("Found quarto: %x %x %x %x attribute %x\n", (int) p0, (int) p1, (int) p2,
-            (int) p3, (int) mask);
+        //System.out.printf("Found quarto: %x %x %x %x attribute %x\n", (int) p0, (int) p1, (int) p2,
+            //(int) p3, (int) mask);
         return true;
       }
     }
