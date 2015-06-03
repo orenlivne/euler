@@ -316,14 +316,14 @@ public class QuartoTest {
 
   private static Quarto generateRandomBoardWithResult(Quarto.Result result) {
     char[] board = null;
+    List<Character> list = new ArrayList<Character>();
+    for (char i = 0; i < Quarto.BOARD_SIZE; i++) {
+      list.add(i);
+    }
     while (true) {
-      List<Character> list = new ArrayList<Character>();
-      for (char i = 0; i < 16; i++) {
-        list.add(i);
-      }
       java.util.Collections.shuffle(list);
-      board = new char[16];
-      for (char i = 0; i < 16; i++) {
+      board = new char[Quarto.BOARD_SIZE];
+      for (char i = 0; i < Quarto.BOARD_SIZE; i++) {
         board[i] = list.get(i);
       }
       Quarto quarto = Quarto.newInstance(board, Quarto.Player.FIRST);
