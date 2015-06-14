@@ -22,7 +22,7 @@ Created on June 14, 2015
 import itertools as it, sys
 
 class WaterJarSolver:
-    # Breadth-first brute-force search for the optimal solution.
+    # Depth-first brute-force search for the optimal solution.
     _NO_SOLUTION = (sys.maxint, [])
     
     def __init__(self, a, b, goal):
