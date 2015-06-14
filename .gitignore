@@ -2,3 +2,6 @@
 /.pydevproject
 /.settings/org.eclipse.core.resources.prefs
 /yoni/*.exe
+/quarto/.classpath
+/quarto/.project
+/quarto/.settings/org.eclipse.jdt.core.prefs
