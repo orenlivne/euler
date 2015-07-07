@@ -1,3 +1,9 @@
+# Foobar problem: rabits_test_subjects
+# Given two lists x,y of positive integers, it is known that there exists an
+# ordering of the x's such that y[i]/x[i] = const. after ordering. Return the
+# percent in the reduction of the value of each y[i] that yields the
+# corresponding x[i], rounded to the nearest integer.
+
 # Submission: SUCCESSFUL. Completed in: 1 hr, 16 mins, 38 secs.
 
 def answer(y, x):
