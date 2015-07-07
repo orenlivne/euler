@@ -1,3 +1,5 @@
+# Submission: SUCCESSFUL. Completed in: 1 hr, 16 mins, 38 secs.
+
 def answer(y, x):
   # If there exists an ordering such that y[i]/x[i] = const. for all i,
   # the larger the x element, the larger the corresponding y element.
