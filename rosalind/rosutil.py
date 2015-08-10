@@ -39,6 +39,11 @@ read_int_set = lambda s: set(map(int, s.lstrip('{').rstrip('}').split(',')))
 '''Read a single FAFSA string from a file.'''
 read_fafsa = lambda file_name: fafsa_values(file_name)[0]
 
+'''Skips the first n iterates of an iterate stream.'''
+def skip(iterable, skip_amount):
+    for _ in xrange(skip_amount): it = next(iterable)
+    for x in iterable: yield x
+
 '''Write a set into a string in the format {1, 2, 3}.'''
 def repr_set(s):
     return '{' + ', '.join(map(str, s)) + '}'

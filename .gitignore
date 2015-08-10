@@ -5,3 +5,4 @@
 /quarto/.classpath
 /quarto/.project
 /quarto/.settings/org.eclipse.jdt.core.prefs
+*.pyc
