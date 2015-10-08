@@ -10,7 +10,7 @@ The merging procedure is an essential part of Merge Sort (which is considered in
 one of the next problems).
 
 Given: A positive integer n and a sorted array A[1..n] of integers from 10**(-5)
- to 10**5, a positive integer m and a sorted array B[1..m] of integers from
+to 10**5, a positive integer m and a sorted array B[1..m] of integers from
 10**(-5) to 10**5.
 
 Return: A sorted array C[1..n+m] containing all the elements of A and B.
