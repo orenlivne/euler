@@ -2,11 +2,6 @@
 ============================================================
 http://rosalind.info/problems/2sum
 
-The Need for Averagesclick to expand
-
-Problem
-
-
 Given: A positive integer n, a positive integer k, and k arrays of size n
 containing integers from 10**(-5) to 10**5.
 
@@ -29,7 +24,7 @@ def two_sum_indices(a, s):
       return tuple(zero_elements[:2])
 
   d = dict((x, i) for i, x in enumerate(a))
-  for p, x in enumerate(a[:len(a)/2]):
+  for p, x in enumerate(a):
     if d.has_key(s - x):
       q = d[s - x]
       if p != q:
