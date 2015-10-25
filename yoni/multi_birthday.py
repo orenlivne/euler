@@ -57,7 +57,7 @@ def multi_birthday_probability_experimental(n, m, k, sample_size=100):
     (i.e., number of birthday possibilities) using random sampling.'''
     return float(sum(multi_birthday_probability_of_sample(n, m, k) for _ in xrange(sample_size))) / sample_size
 
-def plot_probability(k, sample_size=10000):
+def plot_probability(k, sample_size=1000):
     N = np.arange(1, 200)
     p_pair = [multi_birthday_probability(n, 2, k) for n in N]
     p_pair_experimental = [multi_birthday_probability_experimental(n, 2, k, sample_size=sample_size) for n in N]
@@ -89,3 +89,4 @@ def compare_probabilities(n, m, sample_size=2 ** 16):
 if __name__ == '__main__':
     compare_probabilities(20, 3)  # Oberlab / Caliskan+Chong+Igartua 
     plot_probability(NUM_SOLAR_DAYS)
+    P.savefig('multi_birthday.png')
