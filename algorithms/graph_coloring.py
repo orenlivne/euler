@@ -14,7 +14,11 @@ def load_graph(file_name):
     for person, adoption_id in data:
         adoption_ids_by_person.setdefault(person, set()).add(adoption_id)
         persons_by_adoption_id.setdefault(adoption_id, set()).add(person)
-   
+    print '#persons', len(adoption_ids_by_person.keys()) 
+    print '#adoption_ids', len(persons_by_adoption_id.keys())
+    for k,v in persons_by_adoption_id.iteritems():
+        print k, len(v), v
+    
     g = nx.Graph()
     g.add_nodes_from(adoption_ids_by_person.iterkeys())
     edge_list = {}
