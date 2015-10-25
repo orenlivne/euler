@@ -67,8 +67,8 @@ def plot_probability(k, sample_size=1000):
     N_half_pair = it.dropwhile(lambda (n, p): p < 0.5, zip(N, p_pair)).next()[0]
     N_triple_pair = it.dropwhile(lambda (n, p): p < 0.5, zip(N, p_triple)).next()[0]
     
-    P.plot(N, p_pair, 'b-', N, p_pair_experimental, 'b--',
-           N, p_triple, 'r-', N, p_triple_experimental, 'r--')
+    P.plot(N, p_pair, 'b-', N, p_pair_experimental, 'b.',
+           N, p_triple, 'r-', N, p_triple_experimental, 'r.')
     P.legend(['m = 2, theoretical', 'm = 2, %d samples' % (sample_size,),
               'm = 3, theoretical', 'm = 3, %d samples' % (sample_size,)],
              loc='lower right')
