@@ -5,14 +5,16 @@ n = 6
 g = nx.grid_graph(dim=[n])
 
 # Construct fine level
-lev = level.create_finest_level(relax.create_gauss_seidel_relaxer, g)
-np.repeat(np.arange(n/2), 2)
+level0 = level.create_finest_level(relax.create_gauss_seidel_relaxer, g)
+geometric_aggregate_index = np.repeat(np.arange(n/2), 2)
+level1 = level.create_coarse_level(relax.create_gauss_seidel_relaxer, level0, geometric_aggregate_index)
+
 
 # Construct test vectors
 K = 5
 nu = 5
 x = 2 * np.random.rand(n,K) - 1 # K TVs, each = rand[-1,1]
-x = lev.tv_relax(x, nu)
+x = level0.tv_relax(x, nu)
 
 print x
 # TODO: add assertions on x's smoothness.
