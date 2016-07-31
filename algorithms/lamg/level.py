@@ -5,8 +5,7 @@ action operator, TVs, aggregation info, and transfer operators.
 ====================================================================
 '''
 import numpy as np, util, networkx as nx
-from scipy.sparse import tril, triu
-
+from scipy.sparse import tril, triu, spdiags
 #---------------------------------------------------------------------
 # Factory methods
 
@@ -49,6 +48,9 @@ class _CoarseLevel(Level):
     # Galerkin coarsening
     self.P = util.caliber_one_interpolation(aggregate_index)
     self.R = np.transpose(self.P)
+    nc = self.R.shape[0]
+    inv_agg_size = 1./np.sum(self.R, axis=1).flatten()
+    self.T = spdiags(inv_agg_size, 0, nc, nc) * self.R
     self.A = self.R * fine_level.A * self.P
     super(_CoarseLevel, self).__init__(relaxer_factory)
 

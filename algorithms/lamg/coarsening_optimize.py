@@ -5,6 +5,7 @@ minimizing interpolation.
 ====================================================================
 '''
 import numpy as np, util, level, networkx as nx
+from scipy.sparse import csr_matrix
 
 class CoarseningOptimizer(object):
 
@@ -31,7 +32,7 @@ class CoarseningOptimizer(object):
     n, K = x.shape
     energy_fine = np.zeros((n, K))
     for i in xrange(n):
-      nbhrs = W[:,i].nonzero()[0]
+      nbhrs = W[i,:].nonzero()[1]
       y = np.square(x[nbhrs,:] - np.repeat(np.matrix(x[i,:]), len(nbhrs), axis=0))
       w = np.repeat(W[nbhrs,i].todense(), K, axis=1)
       energy_fine[i,:] = np.sum(np.multiply(w, y), axis=0)
@@ -40,9 +41,24 @@ class CoarseningOptimizer(object):
   def optimal_weights(self, x, num_sweeps=2):
     if x.ndim == 1:
       x = np.matrix(x).transpose()
+    W = self._level.fine_level.W
     K = x.shape[1]
     ei = self.coarsened_fine_energy(x)
+    ptx = self._level.P * self._level.T * x
+    d = [self.__flux_matrix(W, ptx[:,k]) for k in xrange(K)]
+    R = self._level.R.tocsr()
+
     for sweep in xrange(num_sweeps):
       for I in xrange(self._level.num_nodes):
+        print 'I', I
         for k in xrange(K):
+          D = d[k]
+          i = R[I,:].nonzero()[1]
+          print D[:,i].todense()
           
+    return None
+
+  def __flux_matrix(self, W, x):
+    rows, cols = W.nonzero()
+    d_values = [W[row,col]*(x[row] - x[col])**2 for row, col in zip(rows, cols)]
+    return csr_matrix((d_values, (rows, cols)), shape=W.shape)

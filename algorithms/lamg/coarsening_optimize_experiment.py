@@ -1,4 +1,4 @@
-import unittest, level, util, relax, numpy as np, numpy.testing as nt, networkx as nx
+import unittest, level, util, relax, numpy as np, numpy.testing as nt, networkx as nx, coarsening_optimize
 
 #def test_tv_relax_grid_1d():
 n = 6
@@ -16,7 +16,7 @@ nu = 5
 x = 2 * np.random.rand(n,K) - 1 # K TVs, each = rand[-1,1]
 x = level0.tv_relax(x, nu)
 
-level1.P * level1.T * x
+optimizer = coarsening_optimize.CoarseningOptimizer(level1)
+print optimizer.optimal_weights(x)
 
-print x
 # TODO: add assertions on x's smoothness.
