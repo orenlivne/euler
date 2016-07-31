@@ -4,7 +4,7 @@ A routine for optimizing the coarse-level operator using TV-energy-
 minimizing interpolation.
 ====================================================================
 '''
-import numpy as np, util, level
+import numpy as np, util, level, networkx as nx
 
 class CoarseningOptimizer(object):
 
@@ -24,14 +24,25 @@ class CoarseningOptimizer(object):
     return util.caliber_one_interpolation_weighted(
         self._level.aggregate_index, self.__optimal_weights())
 
-  def fine_energy(self, x):
-    W = self._level.W
+  def coarsened_fine_energy(self, x):
+    if x.ndim == 1:
+      x = np.matrix(x).transpose()
+    W = self._level.fine_level.W
     n, K = x.shape
-    energy_fine = np.zeros(n, K)
+    energy_fine = np.zeros((n, K))
     for i in xrange(n):
       nbhrs = W[:,i].nonzero()[0]
-      energy_fine[i,:] = A[:,i] * (x[nbhrs,:] - np.repeat(np.matrix(x[0,:]), len(nbhrs), axis=0)) ** 2
-    return energy_fine
+      y = np.square(x[nbhrs,:] - np.repeat(np.matrix(x[i,:]), len(nbhrs), axis=0))
+      w = np.repeat(W[nbhrs,i].todense(), K, axis=1)
+      energy_fine[i,:] = np.sum(np.multiply(w, y), axis=0)
+    return self._level.R * energy_fine
 
-  def __optimal_weights(self):
-    pass
+  def optimal_weights(self, x, num_sweeps=2):
+    if x.ndim == 1:
+      x = np.matrix(x).transpose()
+    K = x.shape[1]
+    ei = self.coarsened_fine_energy(x)
+    for sweep in xrange(num_sweeps):
+      for I in xrange(self._level.num_nodes):
+        for k in xrange(K):
+          
