@@ -25,6 +25,7 @@ def interpolation_relax_kac(w, omega=1.0):
     delta       = omega * residual / (w[(j-1)%n] ** 2 + w[(j+2)%n] ** 2)
     w[j]       += delta*w[(j-1)%n]
     w[(j+1)%n] += delta*w[(j+2)%n]
+    print 'j', j, 'delta', delta, 'distrib', [w[(j-1)%n], w[(j+2)%n]], 'new q', w
   return w
 
 
@@ -62,4 +63,4 @@ def run_relax(n, num_sweeps, relax=interpolation_relax_kac):
   return w
 
 if __name__ == '__main__':
-  w = run_relax(1000, 10)
+  w = run_relax(6, 1)

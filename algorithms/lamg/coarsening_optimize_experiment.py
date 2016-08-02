@@ -16,6 +16,9 @@ nu = 5
 x = 2 * np.random.rand(n,K) - 1 # K TVs, each = rand[-1,1]
 x = level0.tv_relax(x, nu)
 
+x[:,0] = np.arange(n)
+print x
+
 optimizer = coarsening_optimize.CoarseningOptimizer(level1)
 print optimizer.optimal_weights(x)
 
