@@ -38,7 +38,7 @@ class CoarseningOptimizer(object):
       energy_fine[i,:] = np.sum(np.multiply(w, y), axis=0)
     return self._level.R * energy_fine
 
-  def optimal_weights(self, x, num_sweeps=1):
+  def optimal_weights(self, x, num_sweeps=20):
     if x.ndim == 1:
       x = np.matrix(x).transpose()
     W = self._level.fine_level.W
@@ -69,7 +69,7 @@ class CoarseningOptimizer(object):
           print 'D', D[i,:].todense(), D[i,:].shape
           print 'w', w, w.shape
           print 'ei', ei[I,k]
-          delta = 0.5*(np.dot(q[i], w) - ei[I,k])/np.dot(w, w);
+          delta = (ei[I,k] - np.dot(q[i], w))/np.dot(w, w);
           print 'delta', delta
           q[i] += delta * w
           print 'Updated q', q

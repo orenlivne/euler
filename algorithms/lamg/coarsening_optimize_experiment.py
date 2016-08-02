@@ -11,8 +11,8 @@ level1 = level.create_coarse_level(relax.create_gauss_seidel_relaxer, level0, ge
 
 
 # Construct test vectors
-K = 5
-nu = 5
+K = 2 #5
+nu = 50
 x = 2 * np.random.rand(n,K) - 1 # K TVs, each = rand[-1,1]
 x = level0.tv_relax(x, nu)
 
