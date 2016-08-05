@@ -23,7 +23,7 @@ class CoarseningOptimizer(object):
     # Returns the optimized interpolation from which the optimized coarse
     # level operator is built via the Galerkin scheme.
     return util.caliber_one_interpolation_weighted(
-        self._level.aggregate_index, self.__optimal_weights())
+        self._level.aggregate_index, self.optimal_weights())
 
   def coarsened_fine_energy(self, x):
     if x.ndim == 1:
@@ -38,7 +38,8 @@ class CoarseningOptimizer(object):
       energy_fine[i,:] = np.sum(np.multiply(w, y), axis=0)
     return self._level.R * energy_fine
 
-  def optimal_weights(self, x, num_sweeps=20):
+  def optimal_weights_min_norm(self, x, num_sweeps=20):
+    # Minimize weight norm while satisfying TV energy matching.
     if x.ndim == 1:
       x = np.matrix(x).transpose()
     W = self._level.fine_level.W
@@ -47,34 +48,73 @@ class CoarseningOptimizer(object):
     ptx = self._level.P * self._level.T * x
     d = [self.__flux_matrix(W, ptx[:,k]) for k in xrange(K)]
     R = self._level.R.tocsr()
-    print 'ei', ei.shape
+#    print 'ei', ei.shape
 
-    print 'd0', d[0]#.todense()
+#    print 'd0', d[0]#.todense()
     # q = vector of interpolation weights to each fine node.
     q = np.ones((n,))
     for sweep in xrange(num_sweeps):
       for I in xrange(self._level.num_nodes):
-        print '-'*80
-        print 'I', I
+#        print '-'*80
+#        print 'I', I
         for k in xrange(K):
-          print 'k', k
+#          print 'k', k
           # Update the weights at all fine nodes of aggregate I to
           # satisfy coarse energy (TV k)[I] = coarsened fine energy (TV k)[I]
           # while moving minimally away from the old weights (Kaczmarz step).
           D = d[k]
           i = R[I,:].nonzero()[1]
           w = D[i,:] * q
-          print 'q', q, q.shape
-          print 'q[i]', q[i], q[i].shape
-          print 'D', D[i,:].todense(), D[i,:].shape
-          print 'w', w, w.shape
-          print 'ei', ei[I,k]
+#          print 'q', q, q.shape
+#          print 'q[i]', q[i], q[i].shape
+#          print 'D', D[i,:].todense(), D[i,:].shape
+#          print 'w', w, w.shape
+#          print 'ei', ei[I,k]
+          delta = ei[I,k]/np.dot(w, w);
+#          print 'delta', delta
+          q[i] = delta * w
+#          print 'Updated q', q
+#          print 'residual', np.dot(q[i], D[i,:] * q) - ei[I,k]
+#    print q
+    return q
+
+  def optimal_weights_kaczmarz(self, x, num_sweeps=20):
+    if x.ndim == 1:
+      x = np.matrix(x).transpose()
+    W = self._level.fine_level.W
+    n, K = x.shape
+    ei = self.coarsened_fine_energy(x)
+    ptx = self._level.P * self._level.T * x
+    d = [self.__flux_matrix(W, ptx[:,k]) for k in xrange(K)]
+    R = self._level.R.tocsr()
+#    print 'ei', ei.shape
+
+#    print 'd0', d[0]#.todense()
+    # q = vector of interpolation weights to each fine node.
+    q = np.ones((n,))
+    for sweep in xrange(num_sweeps):
+      for I in xrange(self._level.num_nodes):
+#        print '-'*80
+#        print 'I', I
+        for k in xrange(K):
+#          print 'k', k
+          # Update the weights at all fine nodes of aggregate I to
+          # satisfy coarse energy (TV k)[I] = coarsened fine energy (TV k)[I]
+          # while moving minimally away from the old weights (Kaczmarz step).
+          D = d[k]
+          i = R[I,:].nonzero()[1]
+          w = D[i,:] * q
+#          print 'q', q, q.shape
+#          print 'q[i]', q[i], q[i].shape
+#          print 'D', D[i,:].todense(), D[i,:].shape
+#          print 'w', w, w.shape
+#          print 'ei', ei[I,k]
           delta = (ei[I,k] - np.dot(q[i], w))/np.dot(w, w);
-          print 'delta', delta
+#          print 'delta', delta
           q[i] += delta * w
-          print 'Updated q', q
-          print 'residual', np.dot(q[i], D[i,:] * q) - ei[I,k]
-    print q
+#          print 'Updated q', q
+#          print 'residual', np.dot(q[i], D[i,:] * q) - ei[I,k]
+#   print q
     return q
 
   def __flux_matrix(self, W, x):
