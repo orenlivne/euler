@@ -22,7 +22,7 @@ class Level(object):
   def __init__(self, relaxer_factory):
     self._relaxer = relaxer_factory(self.A)
     self.num_nodes = self.A.shape[0]
-    
+
   def tv_relax(self, x, nu):
     # Performs nu relaxation sweeps on Ax=0 starting from the initial value x.
     # x may be a matrix whose columns are TVs.

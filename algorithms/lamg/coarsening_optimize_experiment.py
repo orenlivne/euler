@@ -1,7 +1,8 @@
 import unittest, level, util, relax, numpy as np, numpy.testing as nt, networkx as nx, coarsening_optimize, matplotlib.pyplot as P
+from scipy.sparse import diags
 
 #def test_tv_relax_grid_1d():
-n = 10
+n = 100
 g = nx.grid_graph(dim=[n])
 
 # Construct fine level
@@ -20,15 +21,16 @@ x = level0.tv_relax(x, nu)
 print x
 
 optimizer = coarsening_optimize.CoarseningOptimizer(level1)
-w = optimizer.optimal_weights_kaczmarz(x, num_sweeps=2)
-print w
+Wc = optimizer.optimized_coarse_adjacency_matrix(x, num_sweeps=2)
+print Wc.todense()
 
 A = level0.A
-Q = util.caliber_one_interpolation_weighted(level1.aggregate_index, w)
-Ac = np.transpose(Q)*A*Q
+s = np.sum(Wc, 1)
+s = [s[i,0] for i in xrange(level1.num_nodes)]
+Ac = diags(s) - Wc
 P.figure(1)
 P.clf()
-P.plot([-Ac[i,i+1] for i in xrange(level1.num_nodes-1)], 'bo-')
+P.plot([Wc[i,i+1] for i in xrange(level1.num_nodes-1)], 'bo-')
 P.show()
 
 y = A*x
