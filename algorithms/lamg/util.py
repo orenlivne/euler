@@ -26,3 +26,10 @@ def caliber_one_interpolation_weighted(aggregate_index, weight):
   n, nc = len(aggregate_index), max(aggregate_index) + 1
   return coo_matrix(
       (weight, (np.arange(n), aggregate_index)), shape=(n, nc)).tocsr()
+
+def to_column_matrix(x):
+  # Converts an ndarray into a scipy column matrix.
+  x = np.asmatrix(x)
+  if x.shape[0] == 1 and x.shape[1] > 1:
+    x = x.transpose()
+  return x

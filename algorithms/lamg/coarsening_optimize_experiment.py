@@ -1,9 +1,10 @@
-import unittest, level, util, relax, numpy as np, numpy.testing as nt, networkx as nx, coarsening_optimize, matplotlib.pyplot as P
+import unittest, level, util, relax, numpy as np, numpy.testing as nt, networkx as nx, coarsening_optimize, matplotlib.pyplot as P, setup, cycle
 from scipy.sparse import diags
 
 #def test_tv_relax_grid_1d():
-n = 10000
+n = 100 #10000
 g = nx.grid_graph(dim=[n])
+print 'n', n
 
 # Construct fine level
 level0 = level.create_finest_level(relax.create_gauss_seidel_relaxer, g)
@@ -14,7 +15,7 @@ Ac_orig =level1.A
 # Construct test vectors
 K = 5
 nu = 5
-x = 2 * np.random.rand(n,K) - 1 # K relaxed TVs, each = rand[-1,1]
+x = np.matrix(2 * np.random.rand(n,K) - 1) # K relaxed TVs, each = rand[-1,1]
 x = level0.tv_relax(x, nu)
 #y = 2 * np.random.rand(n,K) - 1 # K random TVs, each = rand[-1,1]
 #x = np.concatenate([x,y], axis=1)
@@ -23,6 +24,7 @@ x = level0.tv_relax(x, nu)
 #x[:,0] = np.arange(n)
 #print x
 
+'''
 optimizer = coarsening_optimize.CoarseningOptimizer(level1)
 Wc = optimizer.optimized_coarse_adjacency_matrix(x, num_sweeps=1, factor_sweeps=2)
 print Wc.todense()
@@ -48,3 +50,7 @@ print x_energy
 print xc_energy
 #print xc_orig_energy
 print 1 - x_energy / xc_energy
+'''
+
+setup = setup.Setup([level0, level1], 2, 1)
+cycle.run_cycles(setup)

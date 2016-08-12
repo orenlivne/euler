@@ -30,6 +30,13 @@ class Level(object):
       x = self._relaxer.relax_hom(x)
     return x
 
+  def relax(self, x, b, nu):
+    # Performs nu relaxation sweeps on Ax=b starting from the initial value x.
+    # x, b may be matrices (of the same dimensions).
+    for _ in xrange(nu):
+      x = self._relaxer.relax_non_hom(x, b)
+    return x
+
 #---------------------------------------------------------------------
 
 class _FinestLevel(Level):

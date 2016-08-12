@@ -3,7 +3,7 @@
 Relaxation scheme implementation. Runs at a single Level.
 ====================================================================
 '''
-import numpy as np
+import numpy as np, util
 from scipy.sparse import tril, triu
 from scipy.sparse.linalg import spsolve
 
@@ -39,4 +39,4 @@ class _GaussSeidelRelaxer(Relaxer):
     return spsolve(self._M, -self._N*x)
 
   def relax_non_hom(self, x, b):
-    return spsolve(self._M, b - self._N*x)
+    return util.to_column_matrix(spsolve(self._M, b - self._N*x)))

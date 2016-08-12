@@ -35,7 +35,7 @@ class CoarseningOptimizer(object):
 
   def optimized_coarse_adjacency_matrix(self, x, num_sweeps=2, factor_sweeps=1):
     return self.__optimized_coarse_adjacency_matrix_jacobi(x, num_sweeps=num_sweeps, factor_sweeps=factor_sweeps)
-    
+
   def __optimized_coarse_adjacency_matrix_jacobi(self, x, num_sweeps, factor_sweeps=1):
     # Returns the optimized coarse-level adjacency for the level.
     if x.ndim == 1:
