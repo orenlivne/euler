@@ -36,7 +36,7 @@ class _GaussSeidelRelaxer(Relaxer):
     self._N = triu(A, k=1).tocsr()
 
   def relax_hom(self, x):
-    return spsolve(self._M, -self._N*x)
+    return util.to_column_matrix(spsolve(self._M, -self._N*x))
 
   def relax_non_hom(self, x, b):
-    return util.to_column_matrix(spsolve(self._M, b - self._N*x)))
+    return util.to_column_matrix(spsolve(self._M, b - self._N*x))

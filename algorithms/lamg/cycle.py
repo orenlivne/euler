@@ -50,14 +50,17 @@ def run_cycles(setup, num_cycles=20):
   b = np.matrix(2 * np.random.rand(setup.level[0].num_nodes, 1) - 1)
   b -= np.mean(b)
 
-  cycle = Cycle(setup, b)
   # Random initial guess.
+  cycle = Cycle(setup, b)
   x = np.matrix(2 * np.random.rand(setup.level[0].num_nodes, 1) - 1)
+  x -= np.mean(x)
+
   # Run cycles.
   r_new = norm(b - A*x)
   print 'Initial      |r|=%.3e' % (r_new,)
   for i in xrange(1, num_cycles + 1):
     r_old = r_new
     x = cycle.run(x)
+    x -= np.mean(x)
     r_new = norm(b - A*x)
     print 'Cycle %2d     |r|=%.3e  (%.2f)' % (i, r_new, r_new / r_old)
