@@ -29,8 +29,9 @@ class Population(object):
   def population(self):
     return [row[1:-1] for row in self.__population[1:-1]]
 
-  def infect(self, i, j):
-    self.__population[i+1][j+1] = INFECTED
+  def attempt_to_infect(self, i, j, strength):
+    # Accounts for padding.
+    self.__attempt_to_infect(i+1, j+1, strength)
 
   def spread_infection(self, strength):
     n, m = self.__size()
@@ -41,10 +42,13 @@ class Population(object):
   def __spread_infection_at(self, i, j, strength):
     p = self.__population
     if p[i][j] == INFECTED:
-      if p[i-1][j] <= strength: p[i-1][j] = INFECTED
-      if p[i+1][j] <= strength: p[i+1][j] = INFECTED
-      if p[i][j-1] <= strength: p[i][j-1] = INFECTED
-      if p[i][j+1] <= strength: p[i][j+1] = INFECTED
+      self.__attempt_to_infect(i-1, j, strength)
+      self.__attempt_to_infect(i+1, j, strength)
+      self.__attempt_to_infect(i, j-1, strength)
+      self.__attempt_to_infect(i, j+1, strength)
+
+  def __attempt_to_infect(self, i, j, strength):
+    if self.__population[i][j] <= strength: self.__population[i][j] = INFECTED
 
   @staticmethod
   def __pad(population):
@@ -58,7 +62,7 @@ class Population(object):
 def answer(population, x, y, strength):
   p = Population(population)
   old_p = p.copy()
-  p.infect(y, x)
+  p.attempt_to_infect(y, x, strength)
   while p != old_p:
     old_p = p.copy()
     p.spread_infection(strength)
